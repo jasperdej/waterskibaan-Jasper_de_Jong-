@@ -8,5 +8,6 @@ namespace Wpf_Waterskibaan_project
 {
     class Program
     {
+       
     }
 }
