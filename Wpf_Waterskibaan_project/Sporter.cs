@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Sporter : IMoves
+    class Sporter : IMoves 
     {
-        public int AantalRondenNogTeGaan { get; set; }
+        public int AantalRondenNogTeGaan { get; set; } = 0;
         public Zwemvest Zwemvest { get; set; }
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
 
+        public List<IMoves> Moves;
 
-        public Sporter
+        public Sporter(List<IMoves> moves)
+        {
+            Moves = moves;
+        }
 
         public int Move()
         {

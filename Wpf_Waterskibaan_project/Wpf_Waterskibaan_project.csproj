@@ -56,8 +56,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IMoves.cs" />
+    <Compile Include="Lijn.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Skies.cs" />
     <Compile Include="Sporter.cs" />
+    <Compile Include="Zwemvest.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
