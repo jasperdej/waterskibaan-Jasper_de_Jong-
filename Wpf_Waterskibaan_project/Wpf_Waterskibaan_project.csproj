@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IMoves.cs" />
+    <Compile Include="Kabel.cs" />
     <Compile Include="Lijn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Skies.cs" />
