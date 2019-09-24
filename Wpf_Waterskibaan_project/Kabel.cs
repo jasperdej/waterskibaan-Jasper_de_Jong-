@@ -13,7 +13,7 @@ namespace Wpf_Waterskibaan_project
 
         public Boolean IsStartPositieLeeg()
         {
-            if(_lijnen[0] == null)
+            if(_lijnen.ElementAt(0) == null)
             {
                 return true;
             }
@@ -26,12 +26,23 @@ namespace Wpf_Waterskibaan_project
 
         public void NeemLijnInGebruik(Lijn lijn)
         {
+            if (_lijnen.ElementAt(0) == null)
+            {
+                _lijnen.First.Value = lijn;
+            }
+            else
+            {
+                Console.WriteLine("Lijn niet toegevoegd, positie is al vol");
+            }
 
         }
 
         public void VerschuifLijnen()
         {
+            for(int i = 0; i < 9; i++)
+            {
 
+            }
         }
 
         public Lijn VerwijderLijnVanKabel()
