@@ -11,7 +11,7 @@ namespace Wpf_Waterskibaan_project
         public int AantalRondenNogTeGaan { get; set; } = 0;
         public Zwemvest Zwemvest { get; set; }
         public Skies Skies { get; set; }
-        public Color KledingKleur { get; set; }
+        //public Color KledingKleur { get; set; }
 
         public List<IMoves> Moves;
 

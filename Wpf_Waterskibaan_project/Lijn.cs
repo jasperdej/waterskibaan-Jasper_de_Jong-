@@ -9,5 +9,10 @@ namespace Wpf_Waterskibaan_project
     class Lijn
     {
         public int PositieOpDeKabel { get; set; }
+
+        public Lijn(int positie)
+        {
+            PositieOpDeKabel = positie;
+        }
     }
 }

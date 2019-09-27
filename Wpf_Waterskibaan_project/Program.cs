@@ -8,6 +8,9 @@ namespace Wpf_Waterskibaan_project
 {
     class Program
     {
-       
+        private static void Main(string[] args)
+        {
+            Kabel.TestOpdracht2();
+        }
     }
 }
