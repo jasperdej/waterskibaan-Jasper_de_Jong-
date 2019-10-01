@@ -14,5 +14,10 @@ namespace Wpf_Waterskibaan_project
         {
             PositieOpDeKabel = positie;
         }
+
+        public override string ToString()
+        {
+            return $"{PositieOpDeKabel}";
+        }
     }
 }

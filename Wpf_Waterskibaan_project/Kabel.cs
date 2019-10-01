@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace Wpf_Waterskibaan_project
                 }
                 else
                 {
-                    Console.WriteLine("Lijn niet toegevoegd, positie is al vol");
+                    Trace.WriteLine("Lijn niet toegevoegd, positie is al vol");
                 }
             }
             catch(ArgumentNullException)
@@ -87,10 +88,10 @@ namespace Wpf_Waterskibaan_project
             }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             string resultaat = "";
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 9; i++)
             {
                 Lijn lijn1 = _lijnen.ElementAt(i);
                 if (lijn1 != null)
@@ -99,12 +100,15 @@ namespace Wpf_Waterskibaan_project
                 }
                 else
                 {
-
+                    
                 }
 
             }
-            int aantal = resultaat.Length - 1;
-            resultaat.Remove(aantal, 1);
+            if (resultaat != "")
+            {
+                resultaat = resultaat.Remove(resultaat.Length - 1);
+            }
+
             return resultaat;
         }
         public static void TestOpdracht2()
@@ -112,17 +116,17 @@ namespace Wpf_Waterskibaan_project
             Lijn lijn3 = new Lijn(0);
             Lijn lijn4 = new Lijn(1);
             Kabel kabel = new Kabel();
-            Console.WriteLine(kabel);
+            Trace.WriteLine(kabel);
             kabel.IsStartPositieLeeg();
             kabel.NeemLijnInGebruik(lijn3);
             kabel.VerschuifLijnen();
             kabel.NeemLijnInGebruik(lijn4);
-            Console.WriteLine(kabel);
+            Trace.WriteLine(kabel);
             kabel.VerschuifLijnen();
             kabel.VerschuifLijnen();
             kabel.VerschuifLijnen();
             kabel.VerschuifLijnen();
-            Console.WriteLine(kabel);
+            Trace.WriteLine(kabel);
             kabel.VerschuifLijnen();
             kabel.VerschuifLijnen();
             kabel.VerschuifLijnen();
@@ -130,7 +134,7 @@ namespace Wpf_Waterskibaan_project
             kabel.VerschuifLijnen();
             kabel.VerwijderLijnVanKabel();
             kabel.VerschuifLijnen();
-            Console.WriteLine(kabel);
+            Trace.WriteLine(kabel);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Wpf_Waterskibaan_project
         private static void Main(string[] args)
         {
             Kabel.TestOpdracht2();
+            LijnVoorraad.TestOpdracht3();
         }
     }
 }
