@@ -11,10 +11,14 @@ namespace Wpf_Waterskibaan_project
     {
         private Queue<Lijn> _lijnen = new Queue<Lijn>();
 
-        public void LijnToevoegenAanRij()
+        public LijnVoorraad()
         {
-            Lijn lijn1 = new Lijn(1);
-            _lijnen.Enqueue(lijn1);
+
+        }
+
+        public void LijnToevoegenAanRij(Lijn lijn)
+        {
+            _lijnen.Enqueue(lijn);
         }
 
         public Lijn VerwijderEersteLijn()
@@ -45,8 +49,7 @@ namespace Wpf_Waterskibaan_project
         {
             LijnVoorraad lijnVoorraad = new LijnVoorraad();
             Trace.WriteLine(lijnVoorraad.VerwijderEersteLijn());
-            lijnVoorraad.LijnToevoegenAanRij();
-            lijnVoorraad.LijnToevoegenAanRij();
+
             Trace.WriteLine(lijnVoorraad.GetAantalLijnen());
             Trace.WriteLine(lijnVoorraad.VerwijderEersteLijn());
             Trace.WriteLine(lijnVoorraad.GetAantalLijnen());
