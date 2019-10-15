@@ -9,20 +9,34 @@ namespace Wpf_Waterskibaan_project
     class WachtrijStarten : IWachtrij
     {
         public int MAX_LENGTE_RIJ = 20;
+        public Queue<Sporter> StartQueue = new Queue<Sporter>();
 
         public List<Sporter> GetAlleSporters()
         {
-            throw new NotImplementedException();
+            Queue<Sporter> StartQueueAlleSporters = new Queue<Sporter>(StartQueue);
+            List<Sporter> AlleSportersStart = new List<Sporter>();
+            for (int i = 0; i < StartQueue.Count; i++)
+            {
+                Sporter sp = StartQueueAlleSporters.Dequeue();
+                AlleSportersStart.Add(sp);
+            }
+            return AlleSportersStart;
         }
 
         public void SporterNeemPlaatsInRij(Sporter sporter)
         {
-            throw new NotImplementedException();
+            StartQueue.Enqueue(sporter);
         }
 
         public List<Sporter> SportersVerlatenRij(int aantal)
         {
-            throw new NotImplementedException();
+            List<Sporter> VerlatenSportersStart = new List<Sporter>();
+            for (int i = 0; i < aantal; i++)
+            {
+                Sporter sp = StartQueue.Dequeue();
+                VerlatenSportersStart.Add(sp);
+            }
+            return VerlatenSportersStart;
         }
     }
 }
