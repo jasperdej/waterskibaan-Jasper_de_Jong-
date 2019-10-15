@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    interface IMoves
+    public interface IMoves
     {
         int Move();
     }

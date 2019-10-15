@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Lijn
+    public class Lijn
     {
         public int PositieOpDeKabel { get; set; }
 

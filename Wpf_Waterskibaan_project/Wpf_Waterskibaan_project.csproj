@@ -71,6 +71,7 @@
     <Compile Include="Lijn.cs" />
     <Compile Include="LijnVoorraad.cs" />
     <Compile Include="MoveCollection.cs" />
+    <Compile Include="NieuweBezoekerArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Skies.cs" />
     <Compile Include="Sporter.cs" />

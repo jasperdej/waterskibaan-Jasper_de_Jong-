@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Program
+    public class Program
     {
         private static void Main(string[] args)
         {

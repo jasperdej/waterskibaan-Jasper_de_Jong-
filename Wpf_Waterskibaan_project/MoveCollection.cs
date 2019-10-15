@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    static class MoveCollection
+    public static class MoveCollection
     {
         public static List<IMoves> GetWillekeurigeMoves()
         {

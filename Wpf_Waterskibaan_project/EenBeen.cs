@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class EenBeen : IMoves
+    public class EenBeen : IMoves
     {
         public EenBeen()
         {

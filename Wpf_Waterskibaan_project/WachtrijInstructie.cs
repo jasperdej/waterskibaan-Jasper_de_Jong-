@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class WachtrijInstructie : IWachtrij
+    public class WachtrijInstructie : IWachtrij
     {
         public int MAX_LENGTE_RIJ = 100;
-        public Queue<Sporter> InstructieQueue = new Queue<Sporter>();
+        public Queue<Sporter> InstructieQueue;
+
+        public WachtrijInstructie()
+        {
+            InstructieQueue = new Queue<Sporter>();
+        }
 
         public List<Sporter> GetAlleSporters()
         {
@@ -38,6 +43,10 @@ namespace Wpf_Waterskibaan_project
             }
             return VerlatenSportersWachtInstructie;
 
+        }
+        public void NieuweBezoeker(Sporter sp)
+        {
+            InstructieQueue.Enqueue(sp);
         }
         public override string ToString()
         {

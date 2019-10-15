@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Jump : IMoves
+    public class Jump : IMoves
     {
         public Jump()
         {

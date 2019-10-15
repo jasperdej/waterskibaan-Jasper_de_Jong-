@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Sporter : IMoves
+    public class Sporter : IMoves
     {
         public int AantalRondenNogTeGaan { get; set; } = 0;
         public Zwemvest Zwemvest { get; set; }

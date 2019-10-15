@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Kabel
+    public class Kabel
     {
         LinkedList<Lijn> _lijnen;
 

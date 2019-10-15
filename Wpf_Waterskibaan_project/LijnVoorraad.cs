@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class LijnVoorraad
+    public class LijnVoorraad
     {
         private Queue<Lijn> _lijnen = new Queue<Lijn>();
 

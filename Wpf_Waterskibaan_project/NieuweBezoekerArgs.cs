@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    public class Zwemvest
+    public class NieuweBezoekerArgs
     {
-        public Zwemvest()
-        {
+        Sporter Sporter { get; set; }
+        
 
+        public NieuweBezoekerArgs(Sporter sp)
+        {
+            Sporter = sp;
         }
     }
 }

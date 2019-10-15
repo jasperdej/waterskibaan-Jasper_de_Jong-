@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    interface IWachtrij //Kijk later naar abstracte klasse
+    public interface IWachtrij //Kijk later naar abstracte klasse
     {
         void SporterNeemPlaatsInRij(Sporter sporter);
 

@@ -7,17 +7,19 @@ using System.Windows.Media;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Waterskibaan
+    public class Waterskibaan
     {
-        Kabel kabel;
-        LijnVoorraad lijnVoorraad;
+        public Kabel kabel;
+        public LijnVoorraad lijnVoorraad;
+        public WachtrijInstructie wachtrijInstructie;
         public Waterskibaan()
         {
             kabel = new Kabel();
             lijnVoorraad = new LijnVoorraad();
+            wachtrijInstructie = new WachtrijInstructie();
             for (int i = 0; i < 15; i++)
             {
-                Lijn nieuwLijn = new Lijn(0);
+                Lijn nieuwLijn = new Lijn(0, null);
                 lijnVoorraad.LijnToevoegenAanRij(nieuwLijn);
             }
         }

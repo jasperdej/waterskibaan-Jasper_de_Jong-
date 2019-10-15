@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Draai : IMoves
+    public class Draai : IMoves
     {
         public Draai()
         {
