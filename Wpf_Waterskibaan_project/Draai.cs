@@ -16,7 +16,7 @@ namespace Wpf_Waterskibaan_project
         {
             Random rnd = new Random();
             int result = rnd.Next(0, 2);
-            if(result == 1)
+            if (result == 1)
             {
                 return 20;
             }

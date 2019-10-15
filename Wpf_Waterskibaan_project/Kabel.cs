@@ -13,7 +13,7 @@ namespace Wpf_Waterskibaan_project
 
         public Kabel()
         {
-            Lijn[] startLijnen = new Lijn[]{ null, null, null, null, null, null, null, null, null };
+            Lijn[] startLijnen = new Lijn[] { null, null, null, null, null, null, null, null, null };
             _lijnen = new LinkedList<Lijn>(startLijnen);
         }
         public Boolean IsStartPositieLeeg()
@@ -29,7 +29,7 @@ namespace Wpf_Waterskibaan_project
                     return false;
                 }
             }
-            catch(ArgumentNullException)
+            catch (ArgumentNullException)
             {
                 return true;
             }
@@ -49,7 +49,7 @@ namespace Wpf_Waterskibaan_project
                     Trace.WriteLine("Lijn niet toegevoegd, positie is al vol");
                 }
             }
-            catch(ArgumentNullException)
+            catch (ArgumentNullException)
             {
                 _lijnen.AddFirst(lijn);
             }
@@ -101,7 +101,7 @@ namespace Wpf_Waterskibaan_project
                 }
                 else
                 {
-                    
+
                 }
 
             }
@@ -111,31 +111,6 @@ namespace Wpf_Waterskibaan_project
             }
 
             return resultaat;
-        }
-        public static void TestOpdracht2()
-        {
-            Lijn lijn3 = new Lijn(0);
-            Lijn lijn4 = new Lijn(1);
-            Kabel kabel = new Kabel();
-            Trace.WriteLine(kabel);
-            kabel.IsStartPositieLeeg();
-            kabel.NeemLijnInGebruik(lijn3);
-            kabel.VerschuifLijnen();
-            kabel.NeemLijnInGebruik(lijn4);
-            Trace.WriteLine(kabel);
-            kabel.VerschuifLijnen();
-            kabel.VerschuifLijnen();
-            kabel.VerschuifLijnen();
-            kabel.VerschuifLijnen();
-            Trace.WriteLine(kabel);
-            kabel.VerschuifLijnen();
-            kabel.VerschuifLijnen();
-            kabel.VerschuifLijnen();
-            kabel.VerwijderLijnVanKabel();
-            kabel.VerschuifLijnen();
-            kabel.VerwijderLijnVanKabel();
-            kabel.VerschuifLijnen();
-            Trace.WriteLine(kabel);
         }
     }
 }

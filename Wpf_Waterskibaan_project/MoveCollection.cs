@@ -12,18 +12,20 @@ namespace Wpf_Waterskibaan_project
         {
             List<IMoves> moves = new List<IMoves>();
             Random rnd = new Random();
-            for (int i = 0; i < rnd.Next(0,6); i++)
+            for (int i = 0; i < rnd.Next(0, 6); i++)
             {
                 int rand = rnd.Next(0, 4);
-                if(rand == 0)
+                if (rand == 0)
                 {
                     Jump jump = new Jump();
                     moves.Add(jump);
-                }else if(rand == 1)
+                }
+                else if (rand == 1)
                 {
                     Draai draai = new Draai();
                     moves.Add(draai);
-                }else if(rand == 2)
+                }
+                else if (rand == 2)
                 {
                     EenBeen eenBeen = new EenBeen();
                     moves.Add(eenBeen);

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Wpf_Waterskibaan_project
 {
-    class Sporter : IMoves 
+    class Sporter : IMoves
     {
         public int AantalRondenNogTeGaan { get; set; } = 0;
         public Zwemvest Zwemvest { get; set; }

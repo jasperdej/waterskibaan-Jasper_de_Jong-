@@ -13,9 +13,9 @@ namespace Wpf_Waterskibaan_project
 
         public List<Sporter> GetAlleSporters()
         {
-             Queue<Sporter> InstructieQueueAlleSporters = new Queue<Sporter>(InstructieQueue);
+            Queue<Sporter> InstructieQueueAlleSporters = new Queue<Sporter>(InstructieQueue);
             List<Sporter> AlleSportersWachtInstructie = new List<Sporter>();
-            for(int i = 0; i < InstructieQueue.Count; i++)
+            for (int i = 0; i < InstructieQueue.Count; i++)
             {
                 Sporter sp = InstructieQueueAlleSporters.Dequeue();
                 AlleSportersWachtInstructie.Add(sp);
@@ -31,7 +31,7 @@ namespace Wpf_Waterskibaan_project
         public List<Sporter> SportersVerlatenRij(int aantal)
         {
             List<Sporter> VerlatenSportersWachtInstructie = new List<Sporter>();
-            for(int i = 0; i < aantal; i++)
+            for (int i = 0; i < aantal; i++)
             {
                 Sporter sp = InstructieQueue.Dequeue();
                 VerlatenSportersWachtInstructie.Add(sp);

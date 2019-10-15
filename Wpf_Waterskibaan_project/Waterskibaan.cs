@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Wpf_Waterskibaan_project
 {
@@ -29,9 +30,9 @@ namespace Wpf_Waterskibaan_project
 
         public void SporterStart(Sporter sp)
         {
-            if(sp.Zwemvest != null && sp.Skies != null)
+            if (sp.Zwemvest != null && sp.Skies != null)
             {
-                sp.KledingKleur = Red; //Later verbeteren
+                sp.KledingKleur = Color.FromRgb(0, 255, 0);
                 if (kabel.IsStartPositieLeeg() == true)
                 {
                     Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
@@ -48,7 +49,7 @@ namespace Wpf_Waterskibaan_project
 
         public override string ToString()
         {
-            return $"{lijnVoorraad} {kabel}";           
+            return $"{lijnVoorraad} {kabel}";
         }
     }
 }
