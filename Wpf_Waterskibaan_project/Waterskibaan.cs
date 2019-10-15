@@ -27,6 +27,18 @@ namespace Wpf_Waterskibaan_project
             lijnVoorraad.LijnToevoegenAanRij(laatsteLijn);
         }
 
+        public void SporterStart(Sporter sp)
+        {
+            sp.KledingKleur = Red; //Later verbeteren
+            if (kabel.IsStartPositieLeeg() == true)
+            {
+                Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
+                kabel.NeemLijnInGebruik(lijnStart);
+                Random rnd = new Random();
+                sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
+            }
+        }
+
         public override string ToString()
         {
             return $"{lijnVoorraad} {kabel}";           
