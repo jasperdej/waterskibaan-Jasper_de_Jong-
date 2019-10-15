@@ -64,6 +64,7 @@
     <Compile Include="EenHand.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IMoves.cs" />
+    <Compile Include="InstructieAfgelopenArgs.cs" />
     <Compile Include="InstructieGroep.cs" />
     <Compile Include="IWachtrij.cs" />
     <Compile Include="Jump.cs" />

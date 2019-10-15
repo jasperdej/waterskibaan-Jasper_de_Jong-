@@ -13,6 +13,7 @@ namespace Wpf_Waterskibaan_project
     {
         public Waterskibaan wsb;
         Random rnd = new Random();
+        int counter = 0;
 
         public void Initialise()
         {
@@ -24,9 +25,19 @@ namespace Wpf_Waterskibaan_project
             }
         }
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
+        public delegate void InstructieAfgelopenHandler(InstructieAfgelopenArgs args);
 
         public event NieuweBezoekerHandler NieuweBezoeker;
-        
+        public event InstructieAfgelopenHandler instructieAfgelopen;
+
+        public void RaiseNieuweBezoeker(Sporter sp)
+        {
+            NieuweBezoeker(new NieuweBezoekerArgs(sp));
+        }
+        public void RaiseInstructieAfgelopen()
+        {
+            instructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
+        }
 
     public void loop()
         {
@@ -37,9 +48,22 @@ namespace Wpf_Waterskibaan_project
             wsb.VerplaatsKabel();
             wsb.ToString();
             Thread.Sleep(1000);
-            if(rnd.Next(0,2) == 1)
+            if (counter == 3)
             {
-                NieuweBezoeker(new NieuweBezoekerArgs(sporter));
+                RaiseNieuweBezoeker(sporter);
+            }
+            else if (counter == 20)
+            {
+                RaiseInstructieAfgelopen();
+            }
+
+            if(counter < 20)
+            {
+                counter++;
+            }
+            else
+            {
+                counter = 0;
             }
         }
     }

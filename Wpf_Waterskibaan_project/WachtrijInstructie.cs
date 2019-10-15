@@ -11,9 +11,15 @@ namespace Wpf_Waterskibaan_project
         public int MAX_LENGTE_RIJ = 100;
         public Queue<Sporter> InstructieQueue;
 
-        public WachtrijInstructie()
+        public WachtrijInstructie(Game game)
         {
             InstructieQueue = new Queue<Sporter>();
+            game.instructieAfgelopen += HandleInstructieAfgelopen;
+        }
+        public void HandleInstructieAfgelopen()
+        {
+            for (int i = 0; i < AantalSporters; i++)
+                InstructieQueue.Dequeue();
         }
 
         public List<Sporter> GetAlleSporters()
@@ -44,6 +50,7 @@ namespace Wpf_Waterskibaan_project
             return VerlatenSportersWachtInstructie;
 
         }
+
         public void NieuweBezoeker(Sporter sp)
         {
             InstructieQueue.Enqueue(sp);
