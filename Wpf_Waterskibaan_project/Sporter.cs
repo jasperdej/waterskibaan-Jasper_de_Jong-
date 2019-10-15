@@ -13,13 +13,15 @@ namespace Wpf_Waterskibaan_project
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
 
-        public int behaaldePunten;
+        public int behaaldePunten = 0;
 
         public List<IMoves> Moves { get; set; }
 
-        public Sporter(List<IMoves> moves)
+        public Sporter(List<IMoves> moves, Zwemvest zwemvest, Skies skies)
         {
             Moves = moves;
+            Zwemvest = zwemvest;
+            Skies = skies;
         }
 
         public int Move()
