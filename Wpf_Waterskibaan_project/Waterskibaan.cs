@@ -29,13 +29,20 @@ namespace Wpf_Waterskibaan_project
 
         public void SporterStart(Sporter sp)
         {
-            sp.KledingKleur = Red; //Later verbeteren
-            if (kabel.IsStartPositieLeeg() == true)
+            if(sp.Zwemvest != null && sp.Skies != null)
             {
-                Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
-                kabel.NeemLijnInGebruik(lijnStart);
-                Random rnd = new Random();
-                sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
+                sp.KledingKleur = Red; //Later verbeteren
+                if (kabel.IsStartPositieLeeg() == true)
+                {
+                    Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
+                    kabel.NeemLijnInGebruik(lijnStart);
+                    Random rnd = new Random();
+                    sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
+                }
+            }
+            else
+            {
+                throw new AttributeNullException();
             }
         }
 

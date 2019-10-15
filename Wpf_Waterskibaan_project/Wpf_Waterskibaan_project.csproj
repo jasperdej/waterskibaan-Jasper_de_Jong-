@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AttributeNullException.cs" />
     <Compile Include="Draai.cs" />
     <Compile Include="EenBeen.cs" />
     <Compile Include="EenHand.cs" />
