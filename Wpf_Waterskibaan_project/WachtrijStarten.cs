@@ -38,5 +38,9 @@ namespace Wpf_Waterskibaan_project
             }
             return VerlatenSportersStart;
         }
+        public override string ToString()
+        {
+            return $"Aantal sporters in de rij: {StartQueue.Count()}";
+        }
     }
 }

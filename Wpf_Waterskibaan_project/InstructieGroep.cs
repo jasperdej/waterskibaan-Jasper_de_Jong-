@@ -38,5 +38,10 @@ namespace Wpf_Waterskibaan_project
             }
             return VerlatenSportersInstructie;
         }
+
+        public override string ToString()
+        {
+            return $"Aantal sporters in de rij: {InstructieQueue.Count()}";
+        }
     }
 }
