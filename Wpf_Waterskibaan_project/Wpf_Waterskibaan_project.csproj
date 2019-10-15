@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Draai.cs" />
     <Compile Include="EenBeen.cs" />
+    <Compile Include="EenHand.cs" />
     <Compile Include="IMoves.cs" />
     <Compile Include="Jump.cs" />
     <Compile Include="Kabel.cs" />
