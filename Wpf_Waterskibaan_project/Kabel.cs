@@ -70,6 +70,7 @@ namespace Wpf_Waterskibaan_project
                 {
                     _lijnen.AddFirst(lijn1);
                     _lijnen.RemoveLast();
+                    lijn1.SporterAanLijn.AantalRondenNogTeGaan--;
                 }
             }
         }
@@ -77,7 +78,7 @@ namespace Wpf_Waterskibaan_project
         public Lijn VerwijderLijnVanKabel()
         {
             Lijn lijn2 = _lijnen.Last();
-            if (lijn2 != null)
+            if (lijn2 != null && lijn2.SporterAanLijn.AantalRondenNogTeGaan == 1)
             {
                 _lijnen.RemoveLast();
                 return lijn2;

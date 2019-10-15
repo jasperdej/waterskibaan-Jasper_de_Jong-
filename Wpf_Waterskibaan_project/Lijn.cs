@@ -10,9 +10,12 @@ namespace Wpf_Waterskibaan_project
     {
         public int PositieOpDeKabel { get; set; }
 
-        public Lijn(int positie)
+        public Sporter SporterAanLijn { get; set; }
+
+        public Lijn(int positie, Sporter sporter)
         {
             PositieOpDeKabel = positie;
+            SporterAanLijn = sporter;
         }
 
         public override string ToString()
