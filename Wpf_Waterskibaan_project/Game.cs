@@ -24,7 +24,6 @@ namespace Wpf_Waterskibaan_project
             instructieGroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
-            
             while (true)
             {
                 loop();

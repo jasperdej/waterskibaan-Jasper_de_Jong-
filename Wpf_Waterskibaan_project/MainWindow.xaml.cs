@@ -20,9 +20,11 @@ namespace Wpf_Waterskibaan_project
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Game game)
         {
+
             InitializeComponent();
+            game.wachtrijInstructie.InstructieQueue;
         }
     }
 }
