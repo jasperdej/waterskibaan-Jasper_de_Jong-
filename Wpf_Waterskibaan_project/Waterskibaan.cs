@@ -11,6 +11,7 @@ namespace Wpf_Waterskibaan_project
     {
         public Kabel kabel;
         public LijnVoorraad lijnVoorraad;
+        Random rnd = new Random();
 
         public Waterskibaan(Game game)
         {
@@ -41,7 +42,10 @@ namespace Wpf_Waterskibaan_project
         {
             if (sp.Zwemvest != null && sp.Skies != null)
             {
-                sp.KledingKleur = Color.FromRgb(0, 255, 0);
+                byte r = Convert.ToByte(rnd.Next(0, 256));
+                byte g = Convert.ToByte(rnd.Next(0, 256));
+                byte b = Convert.ToByte(rnd.Next(0, 256));
+                sp.KledingKleur = Color.FromRgb(r, g, b);
                 if (kabel.IsStartPositieLeeg() == true)
                 {
                     Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
