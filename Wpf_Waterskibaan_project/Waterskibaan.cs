@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,10 @@ namespace Wpf_Waterskibaan_project
         {
             kabel.VerschuifLijnen();
             Lijn laatsteLijn = kabel.VerwijderLijnVanKabel();
-            lijnVoorraad.LijnToevoegenAanRij(laatsteLijn);
+            if (laatsteLijn != null)
+            {
+                lijnVoorraad.LijnToevoegenAanRij(laatsteLijn);
+            }
         }
 
         public void SporterStart(Sporter sp)
@@ -53,6 +57,7 @@ namespace Wpf_Waterskibaan_project
                     Random rnd = new Random();
                     sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
                 }
+                Trace.WriteLine(sp.ToString());
             }
             else
             {

@@ -32,8 +32,12 @@ namespace Wpf_Waterskibaan_project
             List<Sporter> VerlatenSportersInstructie = new List<Sporter>();
             for (int i = 0; i < aantal; i++)
             {
-                Sporter sp = InstructieQueue.Dequeue();
-                VerlatenSportersInstructie.Add(sp);
+                Sporter sp;
+                if (InstructieQueue.Count() != 0)
+                {
+                    sp = InstructieQueue.Dequeue();
+                    VerlatenSportersInstructie.Add(sp);
+                }
             }
             return VerlatenSportersInstructie;
         }

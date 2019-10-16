@@ -44,15 +44,5 @@ namespace Wpf_Waterskibaan_project
         {
             return $"{_lijnen.Count()} lijnen op voorraad";
         }
-
-        public static void TestOpdracht3()
-        {
-            LijnVoorraad lijnVoorraad = new LijnVoorraad();
-            Trace.WriteLine(lijnVoorraad.VerwijderEersteLijn());
-
-            Trace.WriteLine(lijnVoorraad.GetAantalLijnen());
-            Trace.WriteLine(lijnVoorraad.VerwijderEersteLijn());
-            Trace.WriteLine(lijnVoorraad.GetAantalLijnen());
-        }
     }
 }

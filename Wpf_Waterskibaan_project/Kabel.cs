@@ -13,7 +13,7 @@ namespace Wpf_Waterskibaan_project
 
         public Kabel()
         {
-            Lijn[] startLijnen = new Lijn[] { null, null, null, null, null, null, null, null, null };
+            Lijn[] startLijnen = new Lijn[10];
             _lijnen = new LinkedList<Lijn>(startLijnen);
         }
         public Boolean IsStartPositieLeeg()
@@ -40,7 +40,7 @@ namespace Wpf_Waterskibaan_project
         {
             try
             {
-                if (_lijnen.ElementAt(0) == null)
+                if (_lijnen.First.Value == null)
                 {
                     _lijnen.AddFirst(lijn);
                 }
@@ -53,6 +53,7 @@ namespace Wpf_Waterskibaan_project
             {
                 _lijnen.AddFirst(lijn);
             }
+            Trace.WriteLine("Lijn toegevoegd");
 
         }
 
@@ -77,6 +78,7 @@ namespace Wpf_Waterskibaan_project
                 }
                 else { continue; }
             }
+            Trace.WriteLine("Lijnen bewogen");
         }
 
         public Lijn VerwijderLijnVanKabel()

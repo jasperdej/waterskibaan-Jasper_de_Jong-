@@ -15,8 +15,8 @@ namespace Wpf_Waterskibaan_project
         public WachtrijInstructie(Game game, InstructieGroep instructie, WachtrijStarten wachts)
         {
             InstructieQueue = new Queue<Sporter>();
-            game.instructieAfgelopen += HandleInstructieAfgelopen;
-            game.NieuweBezoeker += HandleNieuweBezoeker;
+            game.instructieAfgelopen += new Game.InstructieAfgelopenHandler(HandleInstructieAfgelopen);
+            game.NieuweBezoeker += new Game.NieuweBezoekerHandler(HandleNieuweBezoeker);
             instructieGroep = instructie;
             wachtrijStarten = wachts;
         }
@@ -61,8 +61,11 @@ namespace Wpf_Waterskibaan_project
             List<Sporter> VerlatenSportersWachtInstructie = new List<Sporter>();
             for (int i = 0; i < aantal; i++)
             {
-                Sporter sp = InstructieQueue.Dequeue();
-                VerlatenSportersWachtInstructie.Add(sp);
+                if (InstructieQueue.Count() != 0)
+                {
+                    Sporter sp = InstructieQueue.Dequeue();
+                    VerlatenSportersWachtInstructie.Add(sp);
+                }
             }
             return VerlatenSportersWachtInstructie;
 

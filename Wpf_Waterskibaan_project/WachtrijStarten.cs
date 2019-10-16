@@ -33,8 +33,11 @@ namespace Wpf_Waterskibaan_project
             List<Sporter> VerlatenSportersStart = new List<Sporter>();
             for (int i = 0; i < aantal; i++)
             {
-                Sporter sp = StartQueue.Dequeue();
-                VerlatenSportersStart.Add(sp);
+                if (StartQueue.Count() != 0)
+                {
+                    Sporter sp = StartQueue.Dequeue();
+                    VerlatenSportersStart.Add(sp);
+                }
             }
             return VerlatenSportersStart;
         }

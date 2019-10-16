@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace Wpf_Waterskibaan_project
 {
@@ -26,14 +27,12 @@ namespace Wpf_Waterskibaan_project
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
             instructieGroep.SporterNeemPlaatsInRij(new Sporter(MoveCollection.GetWillekeurigeMoves(), new Zwemvest(), new Skies()));
-            while (true)
-            {
-                loop();
-            }
+            CreateTimer();
         }
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
         public delegate void InstructieAfgelopenHandler(InstructieAfgelopenArgs args);
         public delegate void LijnenVerplaatstHandler(LijnenVerplaatstArgs args);
+        public delegate void EventHandler(object sender, EventArgs args);
 
         public event NieuweBezoekerHandler NieuweBezoeker;
         public event InstructieAfgelopenHandler instructieAfgelopen;
@@ -61,35 +60,40 @@ namespace Wpf_Waterskibaan_project
             handler?.Invoke(sender, args);
         }
 
-
-    public void loop()
+        public void CreateTimer()
         {
-            Zwemvest zw = new Zwemvest();
-            Skies s = new Skies();
-            Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), zw, s);
-            wsb.SporterStart(sporter);
-            wsb.VerplaatsKabel();
-            wsb.ToString();
-            Thread.Sleep(1000);
-            if (counter == 3)
-            {
-                RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
-            }
-            else if (counter == 20)
-            {
-                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
-            }else if(counter == 4)
-            {
-                RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(sporter));
-            }
-
-            if (counter < 20)
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new System.EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+        }
+        public void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            loop();
+            if (counter < 1) //20
             {
                 counter++;
             }
             else
             {
                 counter = 0;
+            }
+        }
+        public void loop()
+        {
+            Zwemvest zw = new Zwemvest();
+            Skies s = new Skies();
+            Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), zw, s);
+            if (counter == 0) //3
+            {
+                RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
+            }
+            else if (counter == 3) //20
+            {
+                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
+            }else if(counter == 1) //4
+            {
+                RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(sporter));
             }
             RaiseRefreshGraphics(this, new EventArgs());
         }
