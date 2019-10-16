@@ -13,8 +13,8 @@ namespace Wpf_Waterskibaan_project
 
         public Kabel()
         {
-            Lijn[] startLijnen = new Lijn[10];
-            _lijnen = new LinkedList<Lijn>(startLijnen);
+            /*Lijn[] startLijnen = new Lijn[9];*/
+            _lijnen = new LinkedList<Lijn>();
         }
         public Boolean IsStartPositieLeeg()
         {
@@ -59,29 +59,36 @@ namespace Wpf_Waterskibaan_project
 
         public void VerschuifLijnen()
         {
+            Lijn[] lArray = new Lijn[11];
+            _lijnen.CopyTo(lArray, 0);
+            Lijn[] lArrayTijdelijk = new Lijn[10];
             for (int i = 0; i < 10; i++)
             {
-                if (_lijnen.ElementAt(i) != null)
+                if (lArray[i] != null)
                 {
-                    Lijn lijn1 = _lijnen.ElementAt(i);
+                    Lijn lijn1 = lArray[i];
                     if (i != 9)
                     {
-                        Lijn lijn2 = lijn1;
-                        _lijnen.AddAfter(_lijnen.Find(lijn1), lijn2);
-                        _lijnen.Remove(_lijnen.Find(lijn1));
+                        lArrayTijdelijk[i + 1] = lijn1;
                         lijn1.PositieOpDeKabel += 1;
                     }
                     if (i == 9)
                     {
-                        _lijnen.AddFirst(lijn1);
-                        _lijnen.RemoveLast();
                         lijn1.SporterAanLijn.AantalRondenNogTeGaan--;
-                        lijn1.PositieOpDeKabel = 0;
+                        if (lijn1.SporterAanLijn.AantalRondenNogTeGaan == 0)
+                        {
+                            VerwijderLijnVanKabel();
+                        }
+                        else
+                        {
+                            lArrayTijdelijk[0] = lijn1;
+                            lijn1.PositieOpDeKabel = 0;
+                        }
                     }
                 }
-                else { continue; }
             }
             Trace.WriteLine("Lijnen bewogen");
+            _lijnen = new LinkedList<Lijn>(lArrayTijdelijk);
         }
 
         public Lijn VerwijderLijnVanKabel()

@@ -143,23 +143,30 @@ namespace Wpf_Waterskibaan_project
             int[,] positiesArray = new int[10, 2] { { 107, 200 }, { 147, 127 }, { 208, 83 }, { 275, 83 }, { 328, 127 }, { 363, 200 }, { 328, 283 }, { 275, 315 }, { 208, 315 }, { 147, 283 } };
             for (int i = 0; i < 10; i++)
             {
-                if (game.wsb.kabel._lijnen.ElementAt(i) != null)
+                try
                 {
-                    Lijn lijn = game.wsb.kabel._lijnen.ElementAt(i);
-                    Sporter sporter = lijn.SporterAanLijn;
-                    Color kledingColor = sporter.KledingKleur;
-                    SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
-                    //position0 = (107,200)
-                    //position1 = (147,127)
-                    //position2 = (208,83)
-                    //position3 = (275,83)
-                    //position4 = (328,127)
-                    //position5 = (363,200)
-                    //position6 = (328,283)
-                    //position7 = (275,315)
-                    //position8 = (208,315)
-                    //position9 = (147,283)
-                    DrawSporter(kledingKleur, positiesArray[i, 0], positiesArray[i, 1], 20, Waterskibaan);
+                    if (game.wsb.kabel._lijnen.ElementAt(i) != null)
+                    {
+                        Lijn lijn = game.wsb.kabel._lijnen.ElementAt(i);
+                        Sporter sporter = lijn.SporterAanLijn;
+                        Color kledingColor = sporter.KledingKleur;
+                        SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                        //position0 = (107,200)
+                        //position1 = (147,127)
+                        //position2 = (208,83)
+                        //position3 = (275,83)
+                        //position4 = (328,127)
+                        //position5 = (363,200)
+                        //position6 = (328,283)
+                        //position7 = (275,315)
+                        //position8 = (208,315)
+                        //position9 = (147,283)
+                        DrawSporter(kledingKleur, positiesArray[i, 0], positiesArray[i, 1], 20, Waterskibaan);
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+
                 }
             }
         }
