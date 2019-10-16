@@ -23,7 +23,7 @@ namespace Wpf_Waterskibaan_project
                 Lijn nieuwLijn = new Lijn(0, null);
                 lijnVoorraad.LijnToevoegenAanRij(nieuwLijn);
             }
-            game.LijnenVerplaatst += HandleLijnenVerplaatst;
+            game.LijnenVerplaatst += new Game.LijnenVerplaatstHandler(HandleLijnenVerplaatst);
         }
 
         public void HandleLijnenVerplaatst(LijnenVerplaatstArgs args)

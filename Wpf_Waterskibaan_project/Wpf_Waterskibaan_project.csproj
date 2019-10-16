@@ -72,6 +72,7 @@
     <Compile Include="Lijn.cs" />
     <Compile Include="LijnenVerplaatstArgs.cs" />
     <Compile Include="LijnVoorraad.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MoveCollection.cs" />
     <Compile Include="NieuweBezoekerArgs.cs" />
     <Compile Include="Program.cs" />

@@ -20,10 +20,12 @@ namespace Wpf_Waterskibaan_project
         public InstructieGroep instructieGroep;
         public WachtrijStarten wachtrijStarten;
         public MainWindow mainWindow;
+        public Logger logger;
 
         public void Initialise()
         {
             wsb = new Waterskibaan(this);
+            logger = new Logger(this);
             instructieGroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
