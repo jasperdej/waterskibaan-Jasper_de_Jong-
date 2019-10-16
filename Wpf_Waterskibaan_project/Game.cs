@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Wpf_Waterskibaan_project
@@ -82,7 +83,12 @@ namespace Wpf_Waterskibaan_project
         {
             Zwemvest zw = new Zwemvest();
             Skies s = new Skies();
-            Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), zw, s);
+            Color kleur;
+            byte r = Convert.ToByte(rnd.Next(1, 255));
+            byte g = Convert.ToByte(rnd.Next(1, 255));
+            byte b = Convert.ToByte(rnd.Next(1, 255));
+            kleur = Color.FromRgb(r, g, b);
+            Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), zw, s, kleur);
             if (counter%3 == 0) //3
             {
                 RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));

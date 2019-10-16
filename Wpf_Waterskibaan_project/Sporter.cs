@@ -32,6 +32,11 @@ namespace Wpf_Waterskibaan_project
             else { HuidigeMove = null; }
         }
 
+        public Sporter(List<IMoves> moves, Zwemvest zwemvest, Skies skies, Color kleur) : this(moves, zwemvest, skies)
+        {
+            KledingKleur = kleur;
+        }
+
         public int Move()
         {
             count++;

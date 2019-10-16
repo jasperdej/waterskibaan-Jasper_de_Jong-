@@ -50,7 +50,8 @@ namespace Wpf_Waterskibaan_project
             {
                 Sporter sporter = wachtrijInstructieSporters.Dequeue();
                 Color kledingColor = sporter.KledingKleur;
-                SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(sporter.KledingKleur.R, sporter.KledingKleur.G, sporter.KledingKleur.B));
+
                 int x = 5;
                 int y = 5;
                 if (counterSporters < 15)
@@ -110,9 +111,18 @@ namespace Wpf_Waterskibaan_project
                 Sporter sporter = wachtrijStarters.Dequeue();
                 Color kledingColor = sporter.KledingKleur;
                 SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
-                int x = 10 + (i * 20);
-                int y = 10;
-                int grootte = 18;
+                int x = 5;
+                int y = 5;
+                if (counterSporters < 10)
+                {
+                    x += (i * 12);
+                }
+                if (counterSporters > 9 && counterSporters < 20)
+                {
+                    x += ((i - 11) * 12);
+                    y += 15;
+                }
+                int grootte = 10;
                 Canvas cv = StartWachtrij;
                 DrawSporter(kledingKleur, x, y, grootte, cv);
                 counterSporters++;

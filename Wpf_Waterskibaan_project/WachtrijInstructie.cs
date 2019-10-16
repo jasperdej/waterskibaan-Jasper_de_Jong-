@@ -38,7 +38,7 @@ namespace Wpf_Waterskibaan_project
             Sporter sp = args.Sporter;
             if (InstructieQueue.Count() < MAX_LENGTE_RIJ)
             {
-                InstructieQueue.Enqueue(sp);1
+                InstructieQueue.Enqueue(sp);
             }
         }
 

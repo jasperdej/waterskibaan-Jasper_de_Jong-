@@ -46,10 +46,13 @@ namespace Wpf_Waterskibaan_project
         {
             if (sp.Zwemvest != null && sp.Skies != null)
             {
-                byte r = Convert.ToByte(rnd.Next(0, 256));
-                byte g = Convert.ToByte(rnd.Next(0, 256));
-                byte b = Convert.ToByte(rnd.Next(0, 256));
-                sp.KledingKleur = Color.FromRgb(r, g, b);
+                /*                int random = rnd.Next(1, 255);
+                                Color kleur;
+                                byte r = Convert.ToByte(random);
+                                byte g = Convert.ToByte(random);
+                                byte b = Convert.ToByte(random);
+                                kleur   = Color.FromRgb(r, g, b);
+                                sp.KledingKleur = kleur;*/
                 if (kabel.IsStartPositieLeeg() == true)
                 {
                     Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
