@@ -15,7 +15,7 @@ namespace Wpf_Waterskibaan_project
         public int Move()
         {
             Random rnd = new Random();
-            int result = rnd.Next(0, 2);
+            int result = rnd.Next(0, 4);
             if (result == 1)
             {
                 return 70;

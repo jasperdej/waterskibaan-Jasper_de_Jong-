@@ -17,17 +17,23 @@ namespace Wpf_Waterskibaan_project
         public int behaaldePunten = 0;
 
         public List<IMoves> Moves { get; set; }
+        public IMoves HuidigeMove { get; set; }
+        public int count = 0;
 
         public Sporter(List<IMoves> moves, Zwemvest zwemvest, Skies skies)
         {
             Moves = moves;
             Zwemvest = zwemvest;
             Skies = skies;
+            HuidigeMove = moves[0];
         }
 
         public int Move()
         {
-            throw new NotImplementedException();
+            count++;
+            int uitkomst = HuidigeMove.Move();
+            HuidigeMove = Moves[count];
+            return uitkomst;
         }
     }
 }
