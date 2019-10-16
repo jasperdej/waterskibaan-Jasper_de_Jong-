@@ -21,25 +21,78 @@ namespace Wpf_Waterskibaan_project
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(Game game)
+        public Game game = new Game();
+        public Queue<Sporter> wachtrijInstructieSporters;
+        public Queue<Sporter> aanwezigInstructieGroep;
+        public Queue<Sporter> wachtrijStarters;
+        
+        public MainWindow()
         {
-            Queue<Sporter> wachtrijInstructieSporters;
             InitializeComponent();
             wachtrijInstructieSporters = new Queue<Sporter>(game.wachtrijInstructie.InstructieQueue);
-            for(int i = 0; i<wachtrijInstructieSporters.Count; i++)
+            aanwezigInstructieGroep = new Queue<Sporter>(game.instructieGroep.InstructieQueue);
+            wachtrijStarters = new Queue<Sporter>(game.wachtrijStarten.StartQueue);
+            MaakWachtrijInstructie();
+            MaakInstructieGroep();
+            MaakStartWachtrij();
+        }
+        public void MaakWachtrijInstructie()
+        {
+            for (int i = 0; i < wachtrijInstructieSporters.Count; i++)
             {
                 Sporter sporter = wachtrijInstructieSporters.Dequeue();
                 Color kledingColor = sporter.KledingKleur;
-                Ellipse cirkel = new Ellipse();
-                cirkel.Fill = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
-                cirkel.Width = 18;
-                cirkel.Height = 18;
-                Canvas.SetLeft(cirkel, 10);
-                Canvas.SetTop(cirkel, 10);
-                Canvas.Add(cirkel); //canvas meegeven in functie als cv
-                //zet maken van vorm in aparte functie met x, y, canvas, kleur etc.
-
+                SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                int x = 0 + (i * 20);
+                int y = 10;
+                int grootte = 18;
+                Canvas cv = InstructieWachtrij;
+                DrawSporter(kledingKleur, x, y, grootte, cv);
             }
+        }
+        public void MaakInstructieGroep()
+        {
+            for (int i = 0; i < aanwezigInstructieGroep.Count; i++)
+            {
+                Sporter sporter = aanwezigInstructieGroep.Dequeue();
+                Color kledingColor = sporter.KledingKleur;
+                SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                int x = 0 + (i * 20);
+                int y = 10;
+                int grootte = 18;
+                Canvas cv = GroepInstructie;
+                DrawSporter(kledingKleur, x, y, grootte, cv);
+            }
+        }
+
+        public void MaakStartWachtrij()
+        {
+            for (int i = 0; i < wachtrijStarters.Count; i++)
+            {
+                Sporter sporter = wachtrijStarters.Dequeue();
+                Color kledingColor = sporter.KledingKleur;
+                SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                int x = 0 + (i * 20);
+                int y = 10;
+                int grootte = 18;
+                Canvas cv = StartWachtrij;
+                DrawSporter(kledingKleur, x, y, grootte, cv);
+            }
+        }
+        public void DrawSporter(SolidColorBrush color, int x, int y, int grootte, Canvas cv)
+        {
+            Ellipse cirkel = new Ellipse();
+            cirkel.Fill = color;
+            cirkel.Width = grootte;
+            cirkel.Height = grootte;
+            Canvas.SetLeft(cirkel, x);
+            Canvas.SetTop(cirkel, y);
+            cv.Children.Add(cirkel);
+        }
+
+        public void Refresh()
+        {
+
         }
     }
 }

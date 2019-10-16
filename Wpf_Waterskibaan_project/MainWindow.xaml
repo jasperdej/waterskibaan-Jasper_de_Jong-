@@ -11,12 +11,12 @@
             <RowDefinition/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
-        <Canvas Background ="Blue" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="228">
+        <Canvas Name="InstructieWachtrij" Background ="Blue" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="228">
             
         </Canvas>
-        <Canvas Background="Yellow" Height="116" Margin="0,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228"/>
-        <Canvas Background ="Black" HorizontalAlignment="Left" Height="174" Margin="0,246,0,0" VerticalAlignment="Top" Width="228"/>
-        <Canvas Background="Aquamarine" HorizontalAlignment="Left" Height="420" Margin="228,0,0,0" VerticalAlignment="Top" Width="495"/>
+        <Canvas Name="GroepInstructie" Background="Yellow" Height="116" Margin="0,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228"/>
+        <Canvas Name="StartWachtrij" Background ="Black" HorizontalAlignment="Left" Height="174" Margin="0,246,0,0" VerticalAlignment="Top" Width="228"/>
+        <Canvas Name="Waterskibaan" Background="Aquamarine" HorizontalAlignment="Left" Height="420" Margin="228,0,0,0" VerticalAlignment="Top" Width="495"/>
 
     </Grid>
 </Window>
