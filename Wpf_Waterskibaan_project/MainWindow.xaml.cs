@@ -141,8 +141,20 @@ namespace Wpf_Waterskibaan_project
             Canvas.SetTop(cirkel, 200);
             Waterskibaan.Children.Add(cirkel);
             int[,] positiesArray = new int[10, 2] { { 107, 200 }, { 147, 127 }, { 208, 83 }, { 275, 83 }, { 328, 127 }, { 363, 200 }, { 328, 283 }, { 275, 315 }, { 208, 315 }, { 147, 283 } };
+            int[,] labelArray = new int[10, 2] { { 89, 220 }, { 129, 152 }, { 190, 103 }, { 257, 108 }, { 310, 152 }, {345, 225 },{ 310, 303 },{ 257, 335 },{ 190, 335 },{ 129, 303 } };
+            //pos0 = (89,220) width is elke keer 60
+            //pos1 = (129,152)
+            //pos2 = (190,103)
+            //pos3 = (257,108)
+            //pos4 = (310,152)
+            //pos5 = (345,225)
+            //pos6 = (310,303)
+            //pos7 = (257,335)
+            //pos8 = (190,335)
+            //pos9 = (129,303)
             for (int i = 0; i < 10; i++)
             {
+                Random rnd = new Random();
                 try
                 {
                     if (game.wsb.kabel._lijnen.ElementAt(i) != null)
@@ -162,6 +174,21 @@ namespace Wpf_Waterskibaan_project
                         //position8 = (208,315)
                         //position9 = (147,283)
                         DrawSporter(kledingKleur, positiesArray[i, 0], positiesArray[i, 1], 20, Waterskibaan);
+                        DrawLine((positiesArray[i, 0] + 10), (positiesArray[i, 1] + 10));
+                        int randomResult = rnd.Next(0, 4);
+                        if (randomResult == 2)
+                        {
+                            string output;
+                            int punten = sporter.Move();
+                            if (punten > 0)
+                            {
+                                if(punten == )
+                            }
+                            else
+                            {
+
+                            }
+                        }
                     }
                 }
                 catch (ArgumentOutOfRangeException)
@@ -179,11 +206,27 @@ namespace Wpf_Waterskibaan_project
                 Height = grootte,
                 StrokeThickness = 1,
                 Stroke = Brushes.Black
-        };
+            };
             Canvas.SetLeft(cirkel, x);
             Canvas.SetTop(cirkel, y);
             cv.Children.Add(cirkel);
         }
+        public void DrawLine(int x1, int y1){
+            Line wsbLine = new Line();
+            wsbLine.Stroke = Brushes.Black;
+            wsbLine.X1 = x1;
+            wsbLine.X2 = 248;
+            wsbLine.Y1 = y1;
+            wsbLine.Y2 = 210;
+            wsbLine.HorizontalAlignment = HorizontalAlignment.Left;
+            wsbLine.VerticalAlignment = VerticalAlignment.Center;
+            wsbLine.StrokeThickness = 2;
+            Waterskibaan.Children.Add(wsbLine);
+        }
+
+
+            
+        
         public void HandleRefreshGraphics(RefreshGraphicsArgs args)
         {
             Refresh();

@@ -64,6 +64,7 @@ namespace Wpf_Waterskibaan_project
             Lijn[] lArrayTijdelijk = new Lijn[10];
             for (int i = 0; i < 10; i++)
             {
+                Random rnd = new Random();
                 if (lArray[i] != null)
                 {
                     Lijn lijn1 = lArray[i];
