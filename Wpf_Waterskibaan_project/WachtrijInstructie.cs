@@ -16,10 +16,12 @@ namespace Wpf_Waterskibaan_project
             InstructieQueue = new Queue<Sporter>();
             game.instructieAfgelopen += HandleInstructieAfgelopen;
         }
-        public void HandleInstructieAfgelopen()
+        public void HandleInstructieAfgelopen(InstructieAfgelopenArgs args)
         {
-            for (int i = 0; i < AantalSporters; i++)
+            for (int i = 0; i < args.AantalSporters; i++)
+            {
                 InstructieQueue.Dequeue();
+            }
         }
 
         public List<Sporter> GetAlleSporters()

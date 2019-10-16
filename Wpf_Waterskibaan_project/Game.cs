@@ -14,10 +14,12 @@ namespace Wpf_Waterskibaan_project
         public Waterskibaan wsb;
         Random rnd = new Random();
         int counter = 0;
+        public WachtrijInstructie wachtrijInstructie;
 
         public void Initialise()
         {
             wsb = new Waterskibaan();
+            wachtrijInstructie = new WachtrijInstructie(this);
             
             while (true)
             {
@@ -34,9 +36,10 @@ namespace Wpf_Waterskibaan_project
         {
             NieuweBezoeker(new NieuweBezoekerArgs(sp));
         }
-        public void RaiseInstructieAfgelopen()
+        public virtual void RaiseInstructieAfgelopen(InstructieAfgelopenArgs args)
         {
-            instructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
+            InstructieAfgelopenHandler handler = instructieAfgelopen;
+            handler?.Invoke(args);
         }
 
     public void loop()
@@ -54,7 +57,7 @@ namespace Wpf_Waterskibaan_project
             }
             else if (counter == 20)
             {
-                RaiseInstructieAfgelopen();
+                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
             }
 
             if(counter < 20)

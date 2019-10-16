@@ -10,7 +10,8 @@ namespace Wpf_Waterskibaan_project
     {
         private static void Main(string[] args)
         {
-            LijnVoorraad.TestOpdracht3();
+            Game game = new Game();
+            game.Initialise();
         }
     }
 }
