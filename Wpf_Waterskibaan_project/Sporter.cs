@@ -39,8 +39,17 @@ namespace Wpf_Waterskibaan_project
 
         public int Move()
         {
+            int uitkomst;
             count++;
-            int uitkomst = HuidigeMove.Move();
+            if (count < Moves.Count)
+            {
+                uitkomst = HuidigeMove.Move();
+                HuidigeMove = Moves[count];
+            }
+            else
+            {
+                uitkomst = 0;
+            }
             HuidigeMove = Moves[count];
             return uitkomst;
         }

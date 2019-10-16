@@ -15,27 +15,7 @@
         <Canvas Name="GroepInstructie" Background="Yellow" Height="116" Margin="0,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228"/>
         <Canvas Name="StartWachtrij" Background ="Green" HorizontalAlignment="Left" Height="174" Margin="0,246,0,0" VerticalAlignment="Top" Width="228"/>
         <Canvas Name="Waterskibaan" Background="Aquamarine" HorizontalAlignment="Left" Height="420" Margin="228,0,0,0" VerticalAlignment="Top" Width="495">
-            <Ellipse Name="Centerpoint" Fill="#FFF4F4F5" Height="20" Canvas.Left="238" Stroke="Black" Canvas.Top="200" Width="20"/>
-            <Ellipse Name="pos0" Fill="#FFF4F4F5" Height="20" Canvas.Left="107" Stroke="Black" Canvas.Top="200" Width="20"/>
-            <Ellipse Name="pos1" Fill="#FFF4F4F5" Height="20" Canvas.Left="147" Stroke="Black" Canvas.Top="127" Width="20"/>
-            <Ellipse Name="pos2" Fill="#FFF4F4F5" Height="20" Canvas.Left="208" Stroke="Black" Canvas.Top="83" Width="20"/>
-            <Ellipse Name="pos3" Fill="#FFF4F4F5" Height="20" Canvas.Left="275" Stroke="Black" Canvas.Top="83" Width="20"/>
-            <Ellipse Name="pos4" Fill="#FFF4F4F5" Height="20" Canvas.Left="328" Stroke="Black" Canvas.Top="127" Width="20"/>
-            <Ellipse Name="pos5" Fill="#FFF4F4F5" Height="20" Canvas.Left="363" Stroke="Black" Canvas.Top="200" Width="20"/>
-            <Ellipse Name="pos6" Fill="#FFF4F4F5" Height="20" Canvas.Left="328" Stroke="Black" Canvas.Top="283" Width="20"/>
-            <Ellipse Name="pos7" Fill="#FFF4F4F5" Height="20" Canvas.Left="275" Stroke="Black" Canvas.Top="315" Width="20"/>
-            <Ellipse Name="pos8" Fill="#FFF4F4F5" Height="20" Canvas.Left="208" Stroke="Black" Canvas.Top="315" Width="20"/>
-            <Ellipse Name="pos9" Fill="#FFF4F4F5" Height="20" Canvas.Left="147" Stroke="Black" Canvas.Top="283" Width="20"/>
-            <Label Name="label0" Content="" Canvas.Left="89" Canvas.Top="220" Width="60"/>
-            <Label Name="label1" Content="" Canvas.Left="129" Canvas.Top="152" Width="60"/>
-            <Label Name="label2" Content="" Canvas.Left="190" Canvas.Top="103" Width="60"/>
-            <Label Name="label3" Content="" Canvas.Left="257" Canvas.Top="108" Width="60"/>
-            <Label Name="label4" Content="" Canvas.Left="310" Canvas.Top="152" Width="60"/>
-            <Label Name="label5" Content="" Canvas.Left="345" Canvas.Top="225" Width="60"/>
-            <Label Name="label6" Content="" Canvas.Left="310" Canvas.Top="303" Width="60"/>
-            <Label Name="label7" Content="" Canvas.Left="257" Canvas.Top="335" Width="60"/>
-            <Label Name="label8" Content="" Canvas.Left="190" Canvas.Top="335" Width="60"/>
-            <Label Name="label9" Content="" Canvas.Left="129" Canvas.Top="303" Width="60"/>
+            
         </Canvas>
         <Label Name="LabelLijnvoorraad" FontSize="8" HorizontalAlignment="Left" Height="40" Margin="723,10,-0.4,0" VerticalAlignment="Top" Width="71"/>
     </Grid>

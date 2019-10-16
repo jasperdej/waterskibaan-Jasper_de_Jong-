@@ -12,7 +12,7 @@ namespace Wpf_Waterskibaan_project
     {
         public Kabel kabel;
         public LijnVoorraad lijnVoorraad;
-        private Random rnd = new Random();
+        Random rnd = new Random();
 
         public Waterskibaan(Game game)
         {
@@ -51,23 +51,14 @@ namespace Wpf_Waterskibaan_project
             {
                 if (sp.Zwemvest != null && sp.Skies != null)
                 {
-                    /*                int random = rnd.Next(1, 255);
-                                    Color kleur;
-                                    byte r = Convert.ToByte(random);
-                                    byte g = Convert.ToByte(random);
-                                    byte b = Convert.ToByte(random);
-                                    kleur   = Color.FromRgb(r, g, b);
-                                    sp.KledingKleur = kleur;*/
                     if (kabel.IsStartPositieLeeg() == true)
                     {
                         Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
                         lijnStart.SporterAanLijn = sp;
                         lijnStart.PositieOpDeKabel = 0;
                         kabel.NeemLijnInGebruik(lijnStart);
-                        Random rnd = new Random();
                         sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
                     }
-                    Trace.WriteLine(sp.ToString());
                 }
                 else
                 {

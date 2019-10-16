@@ -15,7 +15,7 @@ namespace Wpf_Waterskibaan_project
         public WachtrijInstructie(Game game, InstructieGroep instructie, WachtrijStarten wachts)
         {
             InstructieQueue = new Queue<Sporter>();
-            game.instructieAfgelopen += new Game.InstructieAfgelopenHandler(HandleInstructieAfgelopen);
+            game.InstructieAfgelopen += new Game.InstructieAfgelopenHandler(HandleInstructieAfgelopen);
             game.NieuweBezoeker += new Game.NieuweBezoekerHandler(HandleNieuweBezoeker);
             instructieGroep = instructie;
             wachtrijStarten = wachts;

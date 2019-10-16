@@ -22,7 +22,7 @@ namespace Wpf_Waterskibaan_project
             }
             else
             {
-                return 0;
+                return 3;
             }
         }
     }

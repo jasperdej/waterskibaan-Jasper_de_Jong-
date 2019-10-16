@@ -50,10 +50,9 @@ namespace Wpf_Waterskibaan_project
             for (int i = 0; i < wachtrijInstructieSporters.Count(); i++)
             {
                 Sporter sporter = wachtrijInstructieSporters.Dequeue();
-                Color kledingColor = sporter.KledingKleur;
                 SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(sporter.KledingKleur.R, sporter.KledingKleur.G, sporter.KledingKleur.B));
 
-                int x = 5 + (counterSporters*12);
+                int x = 5 + (counterSporters * 12);
                 int y = 5;
                 if (i > 15 && i < 31)
                 {
@@ -77,7 +76,7 @@ namespace Wpf_Waterskibaan_project
                 }
                 if (i > 75 && i < 101)
                 {
-                    x -=76;
+                    x -= 76;
                     y += 75;
                 }
                 int grootte = 10;
@@ -141,7 +140,7 @@ namespace Wpf_Waterskibaan_project
             Canvas.SetTop(cirkel, 200);
             Waterskibaan.Children.Add(cirkel);
             int[,] positiesArray = new int[10, 2] { { 107, 200 }, { 147, 127 }, { 208, 83 }, { 275, 83 }, { 328, 127 }, { 363, 200 }, { 328, 283 }, { 275, 315 }, { 208, 315 }, { 147, 283 } };
-            int[,] labelArray = new int[10, 2] { { 89, 220 }, { 129, 152 }, { 190, 103 }, { 257, 108 }, { 310, 152 }, {345, 225 },{ 310, 303 },{ 257, 335 },{ 190, 335 },{ 129, 303 } };
+            int[,] labelArray = new int[10, 2] { { 89, 220 }, { 129, 152 }, { 190, 103 }, { 257, 108 }, { 310, 152 }, { 345, 225 }, { 310, 303 }, { 257, 335 }, { 190, 335 }, { 129, 303 } };
             //pos0 = (89,220) width is elke keer 60
             //pos1 = (129,152)
             //pos2 = (190,103)
@@ -175,19 +174,63 @@ namespace Wpf_Waterskibaan_project
                         //position9 = (147,283)
                         DrawSporter(kledingKleur, positiesArray[i, 0], positiesArray[i, 1], 20, Waterskibaan);
                         DrawLine((positiesArray[i, 0] + 10), (positiesArray[i, 1] + 10));
-                        int randomResult = rnd.Next(0, 4);
-                        if (randomResult == 2)
+                        int randomResult = rnd.Next(1, 4);
+                        if (randomResult == 2 && i != 0)
                         {
-                            string output;
+                            string output = "";
                             int punten = sporter.Move();
-                            if (punten > 0)
+                            if (punten > 5)
                             {
-                                if(punten == )
+                                sporter.behaaldePunten += punten;
+                                //Draai = 20
+                                //EenBeen = 70
+                                //EenHand = 30
+                                //Jump = 40
+                                if (punten == 20)
+                                {
+                                    output += "Draai \n Success!";
+                                }
+                                else if (punten == 30)
+                                {
+                                    output += "Één hand \n Success!";
+                                }
+                                else if (punten == 40)
+                                {
+                                    output += "Jump \n Success!";
+                                }
+                                else if (punten == 70)
+                                {
+                                    output += "Één been \n Success!";
+                                }
+                                else
+                                {
+                                    output += "Uh oh";
+                                }
+                            }
+                            else if (punten < 5)
+                            {
+                                if (punten == 1)
+                                {
+                                    output += "Jump \n failed";
+                                }
+                                else if (punten == 2)
+                                {
+                                    output += "Draai \n failed";
+                                }
+                                else if (punten == 3)
+                                {
+                                    output += "Één been \n failed";
+                                }
+                                else if (punten == 4)
+                                {
+                                    output += "Één hand \n failed";
+                                }
                             }
                             else
                             {
-
+                                output = "";
                             }
+                            DrawText(labelArray[i, 0], labelArray[i, 1], output);
                         }
                     }
                 }
@@ -211,22 +254,36 @@ namespace Wpf_Waterskibaan_project
             Canvas.SetTop(cirkel, y);
             cv.Children.Add(cirkel);
         }
-        public void DrawLine(int x1, int y1){
-            Line wsbLine = new Line();
-            wsbLine.Stroke = Brushes.Black;
-            wsbLine.X1 = x1;
-            wsbLine.X2 = 248;
-            wsbLine.Y1 = y1;
-            wsbLine.Y2 = 210;
-            wsbLine.HorizontalAlignment = HorizontalAlignment.Left;
-            wsbLine.VerticalAlignment = VerticalAlignment.Center;
-            wsbLine.StrokeThickness = 2;
+        public void DrawLine(int x1, int y1)
+        {
+            Line wsbLine = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = x1,
+                X2 = 248,
+                Y1 = y1,
+                Y2 = 210,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+                StrokeThickness = 2
+            };
             Waterskibaan.Children.Add(wsbLine);
         }
 
+        public void DrawText(int x, int y, string input)
+        {
+            TextBlock tekst = new TextBlock
+            {
+                Text = input
+            };
+            Canvas.SetLeft(tekst, x);
+            Canvas.SetTop(tekst, y);
+            tekst.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            tekst.FontFamily = new FontFamily("Arial");
+            Waterskibaan.Children.Add(tekst);
+        }
 
-            
-        
+
         public void HandleRefreshGraphics(RefreshGraphicsArgs args)
         {
             Refresh();

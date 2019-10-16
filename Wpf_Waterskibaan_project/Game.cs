@@ -35,7 +35,7 @@ namespace Wpf_Waterskibaan_project
         public delegate void RefreshGraphicsHandler(RefreshGraphicsArgs args);
 
         public event NieuweBezoekerHandler NieuweBezoeker;
-        public event InstructieAfgelopenHandler instructieAfgelopen;
+        public event InstructieAfgelopenHandler InstructieAfgelopen;
         public event LijnenVerplaatstHandler LijnenVerplaatst;
         public event RefreshGraphicsHandler RefreshGraphics;
 
@@ -46,7 +46,7 @@ namespace Wpf_Waterskibaan_project
         }
         public virtual void RaiseInstructieAfgelopen(InstructieAfgelopenArgs args)
         {
-            InstructieAfgelopenHandler handler = instructieAfgelopen;
+            InstructieAfgelopenHandler handler = InstructieAfgelopen;
             handler?.Invoke(args);
         }
         public virtual void RaiseLijnenVerplaatst(LijnenVerplaatstArgs args)
@@ -63,14 +63,14 @@ namespace Wpf_Waterskibaan_project
         public void CreateTimer()
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new System.EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Tick += new System.EventHandler(DispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
         }
-        public void dispatcherTimer_Tick(object sender, EventArgs e)
+        public void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            loop();
-            if (counter < 20) //20
+            Loop();
+            if (counter < 20)
             {
                 counter++;
             }
@@ -79,7 +79,7 @@ namespace Wpf_Waterskibaan_project
                 counter = 0;
             }
         }
-        public void loop()
+        public void Loop()
         {
             Zwemvest zw = new Zwemvest();
             Skies s = new Skies();
@@ -89,10 +89,17 @@ namespace Wpf_Waterskibaan_project
             byte b = Convert.ToByte(rnd.Next(1, 255));
             kleur = Color.FromRgb(r, g, b);
             Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), zw, s, kleur);
-            if (counter%3 == 0) //3
+            if (counter % 3 == 0)
             {
                 RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
-                if (wachtrijStarten.StartQueue.Count() > 0/* && wsb.kabel.IsStartPositieLeeg() == true*/)
+            }
+            else if (counter == 19)
+            {
+                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(7));
+            }
+            else if (counter % 4 == 0)
+            {
+                if (wachtrijStarten.StartQueue.Count() > 0 && wsb.kabel.IsStartPositieLeeg() == true)
                 {
                     Sporter starter = wachtrijStarten.StartQueue.Dequeue();
                     RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(starter));
@@ -101,23 +108,6 @@ namespace Wpf_Waterskibaan_project
                 {
                     RaiseLijnenVerplaatst(new LijnenVerplaatstArgs());
                 }
-            }
-            else if (counter == 19) //20
-            {
-                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(7));
-            }else if(counter%4 == 0) //4
-            {
-                Sporter starter;
-                if (wachtrijStarten.StartQueue.Count() > 0 && wsb.kabel.IsStartPositieLeeg() == true)
-                {
-                    starter = wachtrijStarten.StartQueue.Dequeue();
-                }
-                else
-                {
-                    starter = null;
-                }
-                
-                RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(starter));
             }
             RaiseRefreshGraphics(new RefreshGraphicsArgs());
         }

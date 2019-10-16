@@ -7,7 +7,8 @@ namespace Wpf_Waterskibaan_project
     {
         public int AantalSporters { get; set; }
 
-        public InstructieAfgelopenArgs(int aantal) {
+        public InstructieAfgelopenArgs(int aantal)
+        {
             AantalSporters = aantal;
         }
     }

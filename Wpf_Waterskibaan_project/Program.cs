@@ -10,8 +10,6 @@ namespace Wpf_Waterskibaan_project
     {
         private static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Initialise();
         }
     }
 }

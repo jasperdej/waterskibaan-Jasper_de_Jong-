@@ -10,7 +10,6 @@ namespace Wpf_Waterskibaan_project
     {
         public Zwemvest()
         {
-
         }
     }
 }
