@@ -66,7 +66,8 @@ namespace Wpf_Waterskibaan_project
                     Lijn lijn1 = _lijnen.ElementAt(i);
                     if (i != 9)
                     {
-                        _lijnen.AddAfter(_lijnen.Find(lijn1), lijn1);
+                        Lijn lijn2 = lijn1;
+                        _lijnen.AddAfter(_lijnen.Find(lijn1), lijn2);
                         _lijnen.Remove(_lijnen.Find(lijn1));
                         lijn1.PositieOpDeKabel += 1;
                     }

@@ -39,8 +39,9 @@ namespace Wpf_Waterskibaan_project
             MaakWachtrijInstructie();
             MaakInstructieGroep();
             MaakStartWachtrij();
+            MaakWaterskibaan();
             LabelLijnvoorraad.Content = $"Lijnvoorraad: {game.wsb.lijnVoorraad.GetAantalLijnen()}";
-            game.RefreshGraphics += new Game.EventHandler(HandleRefreshGraphics);
+            game.RefreshGraphics += new Game.RefreshGraphicsHandler(HandleRefreshGraphics);
         }
         public void MaakWachtrijInstructie()
         {
@@ -127,6 +128,7 @@ namespace Wpf_Waterskibaan_project
 
         public void MaakWaterskibaan()
         {
+            Waterskibaan.Children.Clear();
             Ellipse cirkel = new Ellipse
             {
                 Fill = Brushes.Black,
@@ -138,19 +140,27 @@ namespace Wpf_Waterskibaan_project
             Canvas.SetLeft(cirkel, 238);
             Canvas.SetTop(cirkel, 200);
             Waterskibaan.Children.Add(cirkel);
+            int[,] positiesArray = new int[10, 2] { { 107, 200 }, { 147, 127 }, { 208, 83 }, { 275, 83 }, { 328, 127 }, { 363, 200 }, { 328, 283 }, { 275, 315 }, { 208, 315 }, { 147, 283 } };
             for (int i = 0; i < 10; i++)
             {
-                Ellipse cirkel = new Ellipse
+                if (game.wsb.kabel._lijnen.ElementAt(i) != null)
                 {
-                    Fill = Brushes.Black,
-                    Width = 20,
-                    Height = 20,
-                    StrokeThickness = 2,
-                    Stroke = Brushes.Black
-                };
-                Canvas.SetLeft(cirkel, 238);
-                Canvas.SetTop(cirkel, 200);
-                Waterskibaan.Children.Add(cirkel);
+                    Lijn lijn = game.wsb.kabel._lijnen.ElementAt(i);
+                    Sporter sporter = lijn.SporterAanLijn;
+                    Color kledingColor = sporter.KledingKleur;
+                    SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                    //position0 = (107,200)
+                    //position1 = (147,127)
+                    //position2 = (208,83)
+                    //position3 = (275,83)
+                    //position4 = (328,127)
+                    //position5 = (363,200)
+                    //position6 = (328,283)
+                    //position7 = (275,315)
+                    //position8 = (208,315)
+                    //position9 = (147,283)
+                    DrawSporter(kledingKleur, positiesArray[i, 0], positiesArray[i, 1], 20, Waterskibaan);
+                }
             }
         }
         public void DrawSporter(SolidColorBrush color, int x, int y, int grootte, Canvas cv)
@@ -167,7 +177,7 @@ namespace Wpf_Waterskibaan_project
             Canvas.SetTop(cirkel, y);
             cv.Children.Add(cirkel);
         }
-        public void HandleRefreshGraphics(object sender, EventArgs args)
+        public void HandleRefreshGraphics(RefreshGraphicsArgs args)
         {
             Refresh();
         }
@@ -184,6 +194,7 @@ namespace Wpf_Waterskibaan_project
             MaakWachtrijInstructie();
             MaakInstructieGroep();
             MaakStartWachtrij();
+            MaakWaterskibaan();
             LabelLijnvoorraad.Content = $"Lijnvoorraad: {game.wsb.lijnVoorraad.GetAantalLijnen()}";
         }
     }

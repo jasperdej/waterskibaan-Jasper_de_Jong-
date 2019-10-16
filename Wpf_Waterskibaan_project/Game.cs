@@ -32,12 +32,12 @@ namespace Wpf_Waterskibaan_project
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
         public delegate void InstructieAfgelopenHandler(InstructieAfgelopenArgs args);
         public delegate void LijnenVerplaatstHandler(LijnenVerplaatstArgs args);
-        public delegate void EventHandler(object sender, EventArgs args);
+        public delegate void RefreshGraphicsHandler(RefreshGraphicsArgs args);
 
         public event NieuweBezoekerHandler NieuweBezoeker;
         public event InstructieAfgelopenHandler instructieAfgelopen;
         public event LijnenVerplaatstHandler LijnenVerplaatst;
-        public event EventHandler RefreshGraphics;
+        public event RefreshGraphicsHandler RefreshGraphics;
 
         public virtual void RaiseNieuweBezoeker(NieuweBezoekerArgs args)
         {
@@ -54,10 +54,10 @@ namespace Wpf_Waterskibaan_project
             LijnenVerplaatstHandler handler = LijnenVerplaatst;
             handler?.Invoke(args);
         }
-        public virtual void RaiseRefreshGraphics(object sender, EventArgs args)
+        public virtual void RaiseRefreshGraphics(RefreshGraphicsArgs args)
         {
-            EventHandler handler = RefreshGraphics;
-            handler?.Invoke(sender, args);
+            RefreshGraphicsHandler handler = RefreshGraphics;
+            handler?.Invoke(args);
         }
 
         public void CreateTimer()
@@ -92,10 +92,9 @@ namespace Wpf_Waterskibaan_project
             if (counter%3 == 0) //3
             {
                 RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
-                Sporter starter;
-                if (wachtrijStarten.StartQueue.Count() > 0 && wsb.kabel.IsStartPositieLeeg() == true)
+                if (wachtrijStarten.StartQueue.Count() > 0/* && wsb.kabel.IsStartPositieLeeg() == true*/)
                 {
-                    starter = wachtrijStarten.StartQueue.Dequeue();
+                    Sporter starter = wachtrijStarten.StartQueue.Dequeue();
                     RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(starter));
                 }
                 else
@@ -120,7 +119,7 @@ namespace Wpf_Waterskibaan_project
                 
                 RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(starter));
             }
-            RaiseRefreshGraphics(this, new EventArgs());
+            RaiseRefreshGraphics(new RefreshGraphicsArgs());
         }
     }
 }
