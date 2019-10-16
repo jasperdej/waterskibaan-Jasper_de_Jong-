@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,23 @@ namespace Wpf_Waterskibaan_project
     {
         public MainWindow(Game game)
         {
-
+            Queue<Sporter> wachtrijInstructieSporters;
             InitializeComponent();
-            game.wachtrijInstructie.InstructieQueue;
+            wachtrijInstructieSporters = new Queue<Sporter>(game.wachtrijInstructie.InstructieQueue);
+            for(int i = 0; i<wachtrijInstructieSporters.Count; i++)
+            {
+                Sporter sporter = wachtrijInstructieSporters.Dequeue();
+                Color kledingColor = sporter.KledingKleur;
+                Ellipse cirkel = new Ellipse();
+                cirkel.Fill = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
+                cirkel.Width = 18;
+                cirkel.Height = 18;
+                Canvas.SetLeft(cirkel, 10);
+                Canvas.SetTop(cirkel, 10);
+                Canvas.Add(cirkel); //canvas meegeven in functie als cv
+                //zet maken van vorm in aparte functie met x, y, canvas, kleur etc.
+
+            }
         }
     }
 }
