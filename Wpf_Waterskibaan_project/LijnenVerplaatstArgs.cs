@@ -3,7 +3,11 @@
     public class LijnenVerplaatstArgs
     {
         public Sporter Sporter { get; set; }
-        public LijnenVerplaatstArgs(Sporter sp)
+        public LijnenVerplaatstArgs()
+        {
+            Sporter = null;
+        }
+        public LijnenVerplaatstArgs(Sporter sp) : this()
         {
             Sporter = sp;
         }

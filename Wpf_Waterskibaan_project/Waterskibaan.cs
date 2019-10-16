@@ -30,7 +30,10 @@ namespace Wpf_Waterskibaan_project
         {
             Sporter sporter = args.Sporter;
             VerplaatsKabel();
-            SporterStart(sporter);
+            if (sporter != null)
+            {
+                SporterStart(sporter);
+            }
         }
         public void VerplaatsKabel()
         {
@@ -44,27 +47,33 @@ namespace Wpf_Waterskibaan_project
 
         public void SporterStart(Sporter sp)
         {
-            if (sp.Zwemvest != null && sp.Skies != null)
+            if (sp != null)
             {
-                /*                int random = rnd.Next(1, 255);
-                                Color kleur;
-                                byte r = Convert.ToByte(random);
-                                byte g = Convert.ToByte(random);
-                                byte b = Convert.ToByte(random);
-                                kleur   = Color.FromRgb(r, g, b);
-                                sp.KledingKleur = kleur;*/
-                if (kabel.IsStartPositieLeeg() == true)
+                if (sp.Zwemvest != null && sp.Skies != null)
                 {
-                    Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
-                    kabel.NeemLijnInGebruik(lijnStart);
-                    Random rnd = new Random();
-                    sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
+                    /*                int random = rnd.Next(1, 255);
+                                    Color kleur;
+                                    byte r = Convert.ToByte(random);
+                                    byte g = Convert.ToByte(random);
+                                    byte b = Convert.ToByte(random);
+                                    kleur   = Color.FromRgb(r, g, b);
+                                    sp.KledingKleur = kleur;*/
+                    if (kabel.IsStartPositieLeeg() == true)
+                    {
+                        Lijn lijnStart = lijnVoorraad.VerwijderEersteLijn();
+                        lijnStart.SporterAanLijn = sp;
+                        lijnStart.PositieOpDeKabel = 0;
+                        kabel.NeemLijnInGebruik(lijnStart);
+                        Random rnd = new Random();
+                        sp.AantalRondenNogTeGaan = rnd.Next(1, 3);
+                    }
+                    Trace.WriteLine(sp.ToString());
                 }
-                Trace.WriteLine(sp.ToString());
-            }
-            else
-            {
-                throw new AttributeNullException();
+                else
+                {
+                    throw new AttributeNullException();
+                }
+
             }
         }
 

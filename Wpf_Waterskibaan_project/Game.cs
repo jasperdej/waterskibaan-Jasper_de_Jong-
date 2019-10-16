@@ -92,13 +92,33 @@ namespace Wpf_Waterskibaan_project
             if (counter%3 == 0) //3
             {
                 RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
+                Sporter starter;
+                if (wachtrijStarten.StartQueue.Count() > 0 && wsb.kabel.IsStartPositieLeeg() == true)
+                {
+                    starter = wachtrijStarten.StartQueue.Dequeue();
+                    RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(starter));
+                }
+                else
+                {
+                    RaiseLijnenVerplaatst(new LijnenVerplaatstArgs());
+                }
             }
             else if (counter == 19) //20
             {
-                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(5));
+                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(7));
             }else if(counter%4 == 0) //4
             {
-                RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(sporter));
+                Sporter starter;
+                if (wachtrijStarten.StartQueue.Count() > 0 && wsb.kabel.IsStartPositieLeeg() == true)
+                {
+                    starter = wachtrijStarten.StartQueue.Dequeue();
+                }
+                else
+                {
+                    starter = null;
+                }
+                
+                RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(starter));
             }
             RaiseRefreshGraphics(this, new EventArgs());
         }

@@ -68,12 +68,14 @@ namespace Wpf_Waterskibaan_project
                     {
                         _lijnen.AddAfter(_lijnen.Find(lijn1), lijn1);
                         _lijnen.Remove(_lijnen.Find(lijn1));
+                        lijn1.PositieOpDeKabel += 1;
                     }
                     if (i == 9)
                     {
                         _lijnen.AddFirst(lijn1);
                         _lijnen.RemoveLast();
                         lijn1.SporterAanLijn.AantalRondenNogTeGaan--;
+                        lijn1.PositieOpDeKabel = 0;
                     }
                 }
                 else { continue; }

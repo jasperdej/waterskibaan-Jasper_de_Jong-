@@ -46,50 +46,50 @@ namespace Wpf_Waterskibaan_project
         {
             int counterSporters = 0;
             InstructieWachtrij.Children.Clear();
-            for (int i = 0; i < wachtrijInstructieSporters.Count; i++)
+            for (int i = 0; i < wachtrijInstructieSporters.Count(); i++)
             {
                 Sporter sporter = wachtrijInstructieSporters.Dequeue();
                 Color kledingColor = sporter.KledingKleur;
                 SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(sporter.KledingKleur.R, sporter.KledingKleur.G, sporter.KledingKleur.B));
 
-                int x = 5;
+                int x = 5 + (counterSporters*12);
                 int y = 5;
-                if (counterSporters < 15)
+                if (i > 15 && i < 31)
                 {
-                    x += (i * 12);
-                }
-                if (counterSporters > 15 && counterSporters < 31)
-                {
-                    x += ((i - 16) * 12);
+                    x -= 16;
                     y += 15;
                 }
-                else if (counterSporters > 30 && counterSporters < 46)
+                if (i > 30 && i < 46)
                 {
-                    x += ((i - 31) * 12);
+                    x -= 31;
                     y += 30;
-                }else if(counterSporters > 45 && counterSporters < 61)
+                }
+                if (i > 45 && i < 61)
                 {
-                    x += ((i - 46) * 12);
+                    x -= 46;
                     y += 45;
-                }else if(counterSporters > 60 && counterSporters < 76)
+                }
+                if (i > 60 && i < 76)
                 {
-                    x += ((i - 61) * 12);
+                    x -= 61; ;
                     y += 60;
-                }else if(counterSporters > 75 && counterSporters < 101)
+                }
+                if (i > 75 && i < 101)
                 {
-                    x += ((i - 76) * 12);
+                    x -=76;
                     y += 75;
                 }
                 int grootte = 10;
                 Canvas cv = InstructieWachtrij;
                 DrawSporter(kledingKleur, x, y, grootte, cv);
                 counterSporters++;
+
             }
         }
         public void MaakInstructieGroep()
         {
             GroepInstructie.Children.Clear();
-            for (int i = 0; i < aanwezigInstructieGroep.Count; i++)
+            for (int i = 0; i < aanwezigInstructieGroep.Count(); i++)
             {
                 Sporter sporter = aanwezigInstructieGroep.Dequeue();
                 Color kledingColor = sporter.KledingKleur;
@@ -106,20 +106,16 @@ namespace Wpf_Waterskibaan_project
         {
             int counterSporters = 0;
             StartWachtrij.Children.Clear();
-            for (int i = 0; i < wachtrijStarters.Count; i++)
+            for (int i = 0; i < wachtrijStarters.Count(); i++)
             {
                 Sporter sporter = wachtrijStarters.Dequeue();
                 Color kledingColor = sporter.KledingKleur;
                 SolidColorBrush kledingKleur = new SolidColorBrush(Color.FromRgb(kledingColor.R, kledingColor.G, kledingColor.B));
-                int x = 5;
+                int x = 5 + (i * 12);
                 int y = 5;
-                if (counterSporters < 10)
-                {
-                    x += (i * 12);
-                }
                 if (counterSporters > 9 && counterSporters < 20)
                 {
-                    x += ((i - 11) * 12);
+                    x -= 11;
                     y += 15;
                 }
                 int grootte = 10;
@@ -128,14 +124,45 @@ namespace Wpf_Waterskibaan_project
                 counterSporters++;
             }
         }
+
+        public void MaakWaterskibaan()
+        {
+            Ellipse cirkel = new Ellipse
+            {
+                Fill = Brushes.Black,
+                Width = 20,
+                Height = 20,
+                StrokeThickness = 2,
+                Stroke = Brushes.Black
+            };
+            Canvas.SetLeft(cirkel, 238);
+            Canvas.SetTop(cirkel, 200);
+            Waterskibaan.Children.Add(cirkel);
+            for (int i = 0; i < 10; i++)
+            {
+                Ellipse cirkel = new Ellipse
+                {
+                    Fill = Brushes.Black,
+                    Width = 20,
+                    Height = 20,
+                    StrokeThickness = 2,
+                    Stroke = Brushes.Black
+                };
+                Canvas.SetLeft(cirkel, 238);
+                Canvas.SetTop(cirkel, 200);
+                Waterskibaan.Children.Add(cirkel);
+            }
+        }
         public void DrawSporter(SolidColorBrush color, int x, int y, int grootte, Canvas cv)
         {
             Ellipse cirkel = new Ellipse
             {
                 Fill = color,
                 Width = grootte,
-                Height = grootte
-            };
+                Height = grootte,
+                StrokeThickness = 1,
+                Stroke = Brushes.Black
+        };
             Canvas.SetLeft(cirkel, x);
             Canvas.SetTop(cirkel, y);
             cv.Children.Add(cirkel);
@@ -148,9 +175,9 @@ namespace Wpf_Waterskibaan_project
 
         public void Refresh()
         {
-/*            InstructieWachtrij.Children.Clear();
-            GroepInstructie.Children.Clear();
-            StartWachtrij.Children.Clear();*/
+            wachtrijInstructieSporters.Clear();
+            aanwezigInstructieGroep.Clear();
+            wachtrijStarters.Clear();
             wachtrijInstructieSporters = new Queue<Sporter>(game.wachtrijInstructie.InstructieQueue);
             aanwezigInstructieGroep = new Queue<Sporter>(game.instructieGroep.InstructieQueue);
             wachtrijStarters = new Queue<Sporter>(game.wachtrijStarten.StartQueue);
