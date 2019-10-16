@@ -20,7 +20,7 @@ namespace Wpf_Waterskibaan_project
 
         public void Initialise()
         {
-            wsb = new Waterskibaan();
+            wsb = new Waterskibaan(this);
             instructieGroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
@@ -32,11 +32,13 @@ namespace Wpf_Waterskibaan_project
         }
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
         public delegate void InstructieAfgelopenHandler(InstructieAfgelopenArgs args);
+        public delegate void LijnenVerplaatstHandler(LijnenVerplaatstArgs args);
 
         public event NieuweBezoekerHandler NieuweBezoeker;
         public event InstructieAfgelopenHandler instructieAfgelopen;
+        public event LijnenVerplaatstHandler LijnenVerplaatst;
 
-        public void RaiseNieuweBezoeker(NieuweBezoekerArgs args)
+        public virtual void RaiseNieuweBezoeker(NieuweBezoekerArgs args)
         {
             NieuweBezoekerHandler handler = NieuweBezoeker;
             handler?.Invoke(args);
@@ -44,6 +46,11 @@ namespace Wpf_Waterskibaan_project
         public virtual void RaiseInstructieAfgelopen(InstructieAfgelopenArgs args)
         {
             InstructieAfgelopenHandler handler = instructieAfgelopen;
+            handler?.Invoke(args);
+        }
+        public virtual void RaiseLijnenVerplaatst(LijnenVerplaatstArgs args)
+        {
+            LijnenVerplaatstHandler handler = LijnenVerplaatst;
             handler?.Invoke(args);
         }
 
@@ -63,6 +70,9 @@ namespace Wpf_Waterskibaan_project
             else if (counter == 20)
             {
                 RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
+            }else if(counter == 4)
+            {
+                RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(sporter));
             }
 
             if(counter < 20)

@@ -70,6 +70,7 @@
     <Compile Include="Jump.cs" />
     <Compile Include="Kabel.cs" />
     <Compile Include="Lijn.cs" />
+    <Compile Include="LijnenVerplaatstArgs.cs" />
     <Compile Include="LijnVoorraad.cs" />
     <Compile Include="MoveCollection.cs" />
     <Compile Include="NieuweBezoekerArgs.cs" />

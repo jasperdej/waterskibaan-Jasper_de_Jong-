@@ -12,7 +12,7 @@ namespace Wpf_Waterskibaan_project
         public Kabel kabel;
         public LijnVoorraad lijnVoorraad;
 
-        public Waterskibaan()
+        public Waterskibaan(Game game)
         {
             kabel = new Kabel();
             lijnVoorraad = new LijnVoorraad();
@@ -21,6 +21,14 @@ namespace Wpf_Waterskibaan_project
                 Lijn nieuwLijn = new Lijn(0, null);
                 lijnVoorraad.LijnToevoegenAanRij(nieuwLijn);
             }
+            game.LijnenVerplaatst += HandleLijnenVerplaatst;
+        }
+
+        public void HandleLijnenVerplaatst(LijnenVerplaatstArgs args)
+        {
+            Sporter sporter = args.Sporter;
+            VerplaatsKabel();
+            SporterStart(sporter);
         }
         public void VerplaatsKabel()
         {
