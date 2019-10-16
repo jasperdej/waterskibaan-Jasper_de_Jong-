@@ -10,7 +10,6 @@ namespace Wpf_Waterskibaan_project
     {
         public int MAX_LENGTE_RIJ = 5;
         public Queue<Sporter> InstructieQueue = new Queue<Sporter>();
-
         public List<Sporter> GetAlleSporters()
         {
             Queue<Sporter> InstructieQueueAlleSporters = new Queue<Sporter>(InstructieQueue);

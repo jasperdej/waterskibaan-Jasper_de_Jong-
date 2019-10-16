@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wpf_Waterskibaan_project
 {
-    class WachtrijStarten : IWachtrij
+    public class WachtrijStarten : IWachtrij
     {
         public int MAX_LENGTE_RIJ = 20;
         public Queue<Sporter> StartQueue = new Queue<Sporter>();

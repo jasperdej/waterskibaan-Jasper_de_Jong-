@@ -8,8 +8,7 @@ namespace Wpf_Waterskibaan_project
 {
     public class NieuweBezoekerArgs
     {
-        Sporter Sporter { get; set; }
-        
+        public Sporter Sporter { get; set; }
 
         public NieuweBezoekerArgs(Sporter sp)
         {

@@ -15,11 +15,15 @@ namespace Wpf_Waterskibaan_project
         Random rnd = new Random();
         int counter = 0;
         public WachtrijInstructie wachtrijInstructie;
+        public InstructieGroep instructieGroep;
+        public WachtrijStarten wachtrijStarten;
 
         public void Initialise()
         {
             wsb = new Waterskibaan();
-            wachtrijInstructie = new WachtrijInstructie(this);
+            instructieGroep = new InstructieGroep();
+            wachtrijStarten = new WachtrijStarten();
+            wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
             
             while (true)
             {
@@ -32,9 +36,10 @@ namespace Wpf_Waterskibaan_project
         public event NieuweBezoekerHandler NieuweBezoeker;
         public event InstructieAfgelopenHandler instructieAfgelopen;
 
-        public void RaiseNieuweBezoeker(Sporter sp)
+        public void RaiseNieuweBezoeker(NieuweBezoekerArgs args)
         {
-            NieuweBezoeker(new NieuweBezoekerArgs(sp));
+            NieuweBezoekerHandler handler = NieuweBezoeker;
+            handler?.Invoke(args);
         }
         public virtual void RaiseInstructieAfgelopen(InstructieAfgelopenArgs args)
         {
@@ -53,7 +58,7 @@ namespace Wpf_Waterskibaan_project
             Thread.Sleep(1000);
             if (counter == 3)
             {
-                RaiseNieuweBezoeker(sporter);
+                RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
             }
             else if (counter == 20)
             {

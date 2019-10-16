@@ -10,18 +10,33 @@ namespace Wpf_Waterskibaan_project
     {
         public int MAX_LENGTE_RIJ = 100;
         public Queue<Sporter> InstructieQueue;
-
-        public WachtrijInstructie(Game game)
+        InstructieGroep instructieGroep;
+        WachtrijStarten wachtrijStarten;
+        public WachtrijInstructie(Game game, InstructieGroep instructie, WachtrijStarten wachts)
         {
             InstructieQueue = new Queue<Sporter>();
             game.instructieAfgelopen += HandleInstructieAfgelopen;
+            game.NieuweBezoeker += HandleNieuweBezoeker;
+            instructieGroep = instructie;
+            wachtrijStarten = wachts;
         }
         public void HandleInstructieAfgelopen(InstructieAfgelopenArgs args)
         {
-            for (int i = 0; i < args.AantalSporters; i++)
+            List<Sporter> startSporters = instructieGroep.SportersVerlatenRij(args.AantalSporters);
+            foreach (Sporter sp in startSporters)
             {
-                InstructieQueue.Dequeue();
+                wachtrijStarten.SporterNeemPlaatsInRij(sp);
             }
+            List<Sporter> wachtrijSporters = SportersVerlatenRij(args.AantalSporters);
+            foreach (Sporter sp in wachtrijSporters)
+            {
+                instructieGroep.SporterNeemPlaatsInRij(sp);
+            }
+        }
+        public void HandleNieuweBezoeker(NieuweBezoekerArgs args)
+        {
+            Sporter sp = args.Sporter;
+            InstructieQueue.Enqueue(sp);
         }
 
         public List<Sporter> GetAlleSporters()
@@ -51,11 +66,6 @@ namespace Wpf_Waterskibaan_project
             }
             return VerlatenSportersWachtInstructie;
 
-        }
-
-        public void NieuweBezoeker(Sporter sp)
-        {
-            InstructieQueue.Enqueue(sp);
         }
         public override string ToString()
         {
