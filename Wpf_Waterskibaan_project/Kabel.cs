@@ -60,18 +60,22 @@ namespace Wpf_Waterskibaan_project
         {
             for (int i = 0; i < 10; i++)
             {
-                Lijn lijn1 = _lijnen.ElementAt(i);
-                if (i != 9)
+                if (_lijnen.ElementAt(i) != null)
                 {
-                    _lijnen.AddAfter(_lijnen.Find(lijn1), lijn1);
-                    _lijnen.Remove(_lijnen.Find(lijn1));
+                    Lijn lijn1 = _lijnen.ElementAt(i);
+                    if (i != 9)
+                    {
+                        _lijnen.AddAfter(_lijnen.Find(lijn1), lijn1);
+                        _lijnen.Remove(_lijnen.Find(lijn1));
+                    }
+                    if (i == 9)
+                    {
+                        _lijnen.AddFirst(lijn1);
+                        _lijnen.RemoveLast();
+                        lijn1.SporterAanLijn.AantalRondenNogTeGaan--;
+                    }
                 }
-                if (i == 9)
-                {
-                    _lijnen.AddFirst(lijn1);
-                    _lijnen.RemoveLast();
-                    lijn1.SporterAanLijn.AantalRondenNogTeGaan--;
-                }
+                else { continue; }
             }
         }
 

@@ -21,14 +21,26 @@ namespace Wpf_Waterskibaan_project
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Game game = new Game();
+        public Game game;
         public Queue<Sporter> wachtrijInstructieSporters;
         public Queue<Sporter> aanwezigInstructieGroep;
         public Queue<Sporter> wachtrijStarters;
-        
+
         public MainWindow()
         {
             InitializeComponent();
+            game = new Game();
+            game.Initialise();
+            wachtrijInstructieSporters = new Queue<Sporter>();
+            aanwezigInstructieGroep = new Queue<Sporter>();
+            wachtrijStarters = new Queue<Sporter>();
+            MaakWachtrijInstructie();
+            MaakInstructieGroep();
+            MaakStartWachtrij();
+        }
+
+        public void StartVisualisatieRijen()
+        {
             wachtrijInstructieSporters = new Queue<Sporter>(game.wachtrijInstructie.InstructieQueue);
             aanwezigInstructieGroep = new Queue<Sporter>(game.instructieGroep.InstructieQueue);
             wachtrijStarters = new Queue<Sporter>(game.wachtrijStarten.StartQueue);
@@ -81,18 +93,30 @@ namespace Wpf_Waterskibaan_project
         }
         public void DrawSporter(SolidColorBrush color, int x, int y, int grootte, Canvas cv)
         {
-            Ellipse cirkel = new Ellipse();
-            cirkel.Fill = color;
-            cirkel.Width = grootte;
-            cirkel.Height = grootte;
+            Ellipse cirkel = new Ellipse
+            {
+                Fill = color,
+                Width = grootte,
+                Height = grootte
+            };
             Canvas.SetLeft(cirkel, x);
             Canvas.SetTop(cirkel, y);
             cv.Children.Add(cirkel);
         }
-
-        public void Refresh()
+        public void HandleRefreshGraphics(object sender, EventArgs args)
         {
+            Refresh();
+        }
+        
 
+            public void Refresh()
+        {
+            wachtrijInstructieSporters = new Queue<Sporter>(game.wachtrijInstructie.InstructieQueue);
+            aanwezigInstructieGroep = new Queue<Sporter>(game.instructieGroep.InstructieQueue);
+            wachtrijStarters = new Queue<Sporter>(game.wachtrijStarten.StartQueue);
+            MaakWachtrijInstructie();
+            MaakInstructieGroep();
+            MaakStartWachtrij();
         }
     }
 }

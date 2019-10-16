@@ -25,7 +25,11 @@ namespace Wpf_Waterskibaan_project
             Moves = moves;
             Zwemvest = zwemvest;
             Skies = skies;
-            HuidigeMove = moves[0];
+            if (Moves.Count() != 0)
+            {
+                HuidigeMove = Moves.First();
+            }
+            else { HuidigeMove = null; }
         }
 
         public int Move()

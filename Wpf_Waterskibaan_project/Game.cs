@@ -17,6 +17,7 @@ namespace Wpf_Waterskibaan_project
         public WachtrijInstructie wachtrijInstructie;
         public InstructieGroep instructieGroep;
         public WachtrijStarten wachtrijStarten;
+        public MainWindow mainWindow;
 
         public void Initialise()
         {
@@ -24,9 +25,7 @@ namespace Wpf_Waterskibaan_project
             instructieGroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
-            MainWindow mainWindow = new MainWindow(this);
-
-            mainWindow.Show();
+            instructieGroep.SporterNeemPlaatsInRij(new Sporter(MoveCollection.GetWillekeurigeMoves(), new Zwemvest(), new Skies()));
             while (true)
             {
                 loop();
@@ -39,6 +38,7 @@ namespace Wpf_Waterskibaan_project
         public event NieuweBezoekerHandler NieuweBezoeker;
         public event InstructieAfgelopenHandler instructieAfgelopen;
         public event LijnenVerplaatstHandler LijnenVerplaatst;
+        public event EventHandler RefreshGraphics;
 
         public virtual void RaiseNieuweBezoeker(NieuweBezoekerArgs args)
         {
@@ -55,6 +55,12 @@ namespace Wpf_Waterskibaan_project
             LijnenVerplaatstHandler handler = LijnenVerplaatst;
             handler?.Invoke(args);
         }
+        public virtual void RaiseRefreshGraphics(object sender, EventArgs args)
+        {
+            EventHandler handler = RefreshGraphics;
+            handler?.Invoke(sender, args);
+        }
+
 
     public void loop()
         {
@@ -77,7 +83,7 @@ namespace Wpf_Waterskibaan_project
                 RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(sporter));
             }
 
-            if(counter < 20)
+            if (counter < 20)
             {
                 counter++;
             }
@@ -85,6 +91,7 @@ namespace Wpf_Waterskibaan_project
             {
                 counter = 0;
             }
+            RaiseRefreshGraphics(this, new EventArgs());
         }
     }
 }

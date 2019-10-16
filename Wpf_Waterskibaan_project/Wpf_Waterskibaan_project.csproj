@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Wpf_Waterskibaan_project.Program</StartupObject>
+    <StartupObject>Wpf_Waterskibaan_project.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
