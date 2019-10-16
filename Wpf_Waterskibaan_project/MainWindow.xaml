@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Canvas Name="InstructieWachtrij" Background ="Blue" HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="228"/>
         <Canvas Name="GroepInstructie" Background="Yellow" Height="116" Margin="0,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="228"/>
-        <Canvas Name="StartWachtrij" Background ="Black" HorizontalAlignment="Left" Height="174" Margin="0,246,0,0" VerticalAlignment="Top" Width="228"/>
+        <Canvas Name="StartWachtrij" Background ="Green" HorizontalAlignment="Left" Height="174" Margin="0,246,0,0" VerticalAlignment="Top" Width="228"/>
         <Canvas Name="Waterskibaan" Background="Aquamarine" HorizontalAlignment="Left" Height="420" Margin="228,0,0,0" VerticalAlignment="Top" Width="495"/>
         <Label Name="LabelLijnvoorraad" FontSize="8" HorizontalAlignment="Left" Height="40" Margin="723,10,-0.4,0" VerticalAlignment="Top" Width="71"/>
     </Grid>

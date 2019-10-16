@@ -9,11 +9,11 @@ namespace Wpf_Waterskibaan_project
 {
     public class LijnVoorraad
     {
-        private Queue<Lijn> _lijnen = new Queue<Lijn>();
+        public Queue<Lijn> _lijnen;
 
         public LijnVoorraad()
         {
-
+            _lijnen = new Queue<Lijn>();
         }
 
         public void LijnToevoegenAanRij(Lijn lijn)

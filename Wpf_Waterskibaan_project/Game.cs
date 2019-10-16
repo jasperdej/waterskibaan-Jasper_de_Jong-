@@ -26,7 +26,6 @@ namespace Wpf_Waterskibaan_project
             instructieGroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
-            instructieGroep.SporterNeemPlaatsInRij(new Sporter(MoveCollection.GetWillekeurigeMoves(), new Zwemvest(), new Skies()));
             CreateTimer();
         }
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
@@ -70,7 +69,7 @@ namespace Wpf_Waterskibaan_project
         public void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             loop();
-            if (counter < 1) //20
+            if (counter < 20) //20
             {
                 counter++;
             }
@@ -84,14 +83,14 @@ namespace Wpf_Waterskibaan_project
             Zwemvest zw = new Zwemvest();
             Skies s = new Skies();
             Sporter sporter = new Sporter(MoveCollection.GetWillekeurigeMoves(), zw, s);
-            if (counter == 0) //3
+            if (counter%3 == 0) //3
             {
                 RaiseNieuweBezoeker(new NieuweBezoekerArgs(sporter));
             }
-            else if (counter == 3) //20
+            else if (counter == 19) //20
             {
-                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(rnd.Next(1,6)));
-            }else if(counter == 1) //4
+                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(5));
+            }else if(counter%4 == 0) //4
             {
                 RaiseLijnenVerplaatst(new LijnenVerplaatstArgs(sporter));
             }

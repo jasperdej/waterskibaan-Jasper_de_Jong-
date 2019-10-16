@@ -12,7 +12,7 @@ namespace Wpf_Waterskibaan_project
     {
         public Kabel kabel;
         public LijnVoorraad lijnVoorraad;
-        Random rnd = new Random();
+        private Random rnd = new Random();
 
         public Waterskibaan(Game game)
         {

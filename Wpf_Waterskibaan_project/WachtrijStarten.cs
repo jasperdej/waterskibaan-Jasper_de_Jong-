@@ -25,7 +25,10 @@ namespace Wpf_Waterskibaan_project
 
         public void SporterNeemPlaatsInRij(Sporter sporter)
         {
-            StartQueue.Enqueue(sporter);
+            if (StartQueue.Count() < MAX_LENGTE_RIJ)
+            {
+                StartQueue.Enqueue(sporter);
+            }
         }
 
         public List<Sporter> SportersVerlatenRij(int aantal)

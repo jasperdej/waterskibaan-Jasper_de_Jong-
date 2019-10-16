@@ -10,8 +10,8 @@ namespace Wpf_Waterskibaan_project
     {
         public int MAX_LENGTE_RIJ = 100;
         public Queue<Sporter> InstructieQueue;
-        InstructieGroep instructieGroep;
-        WachtrijStarten wachtrijStarten;
+        public InstructieGroep instructieGroep;
+        public WachtrijStarten wachtrijStarten;
         public WachtrijInstructie(Game game, InstructieGroep instructie, WachtrijStarten wachts)
         {
             InstructieQueue = new Queue<Sporter>();
@@ -36,7 +36,10 @@ namespace Wpf_Waterskibaan_project
         public void HandleNieuweBezoeker(NieuweBezoekerArgs args)
         {
             Sporter sp = args.Sporter;
-            InstructieQueue.Enqueue(sp);
+            if (InstructieQueue.Count() < MAX_LENGTE_RIJ)
+            {
+                InstructieQueue.Enqueue(sp);1
+            }
         }
 
         public List<Sporter> GetAlleSporters()

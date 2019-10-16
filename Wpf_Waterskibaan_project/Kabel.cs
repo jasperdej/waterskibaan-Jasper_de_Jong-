@@ -9,7 +9,7 @@ namespace Wpf_Waterskibaan_project
 {
     public class Kabel
     {
-        LinkedList<Lijn> _lijnen;
+        public LinkedList<Lijn> _lijnen;
 
         public Kabel()
         {
