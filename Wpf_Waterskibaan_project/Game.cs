@@ -25,7 +25,7 @@ namespace Wpf_Waterskibaan_project
         public void Initialise()
         {
             wsb = new Waterskibaan(this);
-            logger = new Logger(this);
+            logger = new Logger(this, wsb);
             instructieGroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
             wachtrijInstructie = new WachtrijInstructie(this, instructieGroep, wachtrijStarten);
@@ -97,7 +97,7 @@ namespace Wpf_Waterskibaan_project
             }
             else if (counter == 19)
             {
-                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(7));
+                RaiseInstructieAfgelopen(new InstructieAfgelopenArgs(5));
             }
             else if (counter % 4 == 0)
             {

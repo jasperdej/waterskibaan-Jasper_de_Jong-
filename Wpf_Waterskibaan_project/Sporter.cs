@@ -9,7 +9,7 @@ namespace Wpf_Waterskibaan_project
 {
     public class Sporter : IMoves
     {
-        public int AantalRondenNogTeGaan { get; set; } = 0;
+        public int AantalRondenNogTeGaan { get; set; }
         public Zwemvest Zwemvest { get; set; }
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
@@ -52,6 +52,11 @@ namespace Wpf_Waterskibaan_project
             }
             HuidigeMove = Moves[count];
             return uitkomst;
+        }
+
+        public override string ToString()
+        {
+            return $"Kleur: {KledingKleur}";
         }
     }
 }

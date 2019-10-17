@@ -40,7 +40,6 @@ namespace Wpf_Waterskibaan_project
             MaakInstructieGroep();
             MaakStartWachtrij();
             MaakWaterskibaan();
-            LabelLijnvoorraad.Content = $"Lijnvoorraad: {game.wsb.lijnVoorraad.GetAantalLijnen()}";
             game.RefreshGraphics += new Game.RefreshGraphicsHandler(HandleRefreshGraphics);
         }
         public void MaakWachtrijInstructie()
@@ -83,7 +82,7 @@ namespace Wpf_Waterskibaan_project
                 Canvas cv = InstructieWachtrij;
                 DrawSporter(kledingKleur, x, y, grootte, cv);
                 counterSporters++;
-
+                ContentLINQ.Content = $"{game.logger.GetResultaten()}";
             }
         }
         public void MaakInstructieGroep()
@@ -174,10 +173,12 @@ namespace Wpf_Waterskibaan_project
                         //position9 = (147,283)
                         DrawSporter(kledingKleur, positiesArray[i, 0], positiesArray[i, 1], 20, Waterskibaan);
                         DrawLine((positiesArray[i, 0] + 10), (positiesArray[i, 1] + 10));
+                        string output = "";
+                        output += $"{i} \n";
                         int randomResult = rnd.Next(1, 4);
                         if (randomResult == 2 && i != 0)
                         {
-                            string output = "";
+                            output = "";
                             int punten = sporter.Move();
                             if (punten > 5)
                             {
@@ -228,10 +229,10 @@ namespace Wpf_Waterskibaan_project
                             }
                             else
                             {
-                                output = "";
+                                output += "";
                             }
-                            DrawText(labelArray[i, 0], labelArray[i, 1], output);
                         }
+                        DrawText(labelArray[i, 0], labelArray[i, 1], output);
                     }
                 }
                 catch (ArgumentOutOfRangeException)
@@ -302,7 +303,9 @@ namespace Wpf_Waterskibaan_project
             MaakInstructieGroep();
             MaakStartWachtrij();
             MaakWaterskibaan();
+            ContentLINQ.Content = "";
             LabelLijnvoorraad.Content = $"Lijnvoorraad: {game.wsb.lijnVoorraad.GetAantalLijnen()}";
+            ContentLINQ.Content = $"{game.logger.GetResultaten()}";
         }
     }
 }
