@@ -85,17 +85,23 @@ namespace Wpf_Waterskibaan_project
                 output += $"Rondes: {resultaat} \n";
                 //6
                 Queue<Lijn> lijnen = new Queue<Lijn>(wsb.lijnVoorraad._lijnen);
-                if (lijnen.Count > 0 && lijnen.Peek().SporterAanLijn != null)
-                {
-                    var alleMoves = from item in alleBezoekers where lijnen.Dequeue().SporterAanLijn != null select item.Moves;
-                    List<IMoves> uniekeMoves = new List<IMoves>();
-                    foreach (IMoves im in alleMoves.ToList())// fix bug
+                if (lijnen.Count > 0 && lijnen.Peek().SporterAanLijn != null) {
+                    try
                     {
-                        uniekeMoves.Add(im);
+                        var alleMoves = from item in alleBezoekers where lijnen.Dequeue().SporterAanLijn != null select item.Moves;
+                        List<IMoves> uniekeMoves = new List<IMoves>();
+                        foreach (IMoves im in alleMoves.ToList())// fix bug
+                        {
+                            uniekeMoves.Add(im);
+                        }
+                        foreach (IMoves moves in uniekeMoves)
+                        {
+                            output += $"{moves}, \n";
+                        }
                     }
-                    foreach (IMoves moves in uniekeMoves)
+                    catch (Exception)
                     {
-                        output += $"{moves}, \n";
+                        output = "";
                     }
                 }
                     return output;
