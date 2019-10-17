@@ -94,7 +94,7 @@ namespace Wpf_Waterskibaan_project
                 {
                     var alleMoves = from item in alleBezoekers where lijnen.Dequeue().SporterAanLijn != null select item.Moves;
                     List<IMoves> uniekeMoves = new List<IMoves>();
-                    foreach (IMoves im in alleMoves)
+                    foreach (IMoves im in alleMoves)// fix bug
                     {
                         uniekeMoves.Add(im);
                     }
