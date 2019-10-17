@@ -28,8 +28,17 @@ namespace Wpf_Waterskibaan_project
             return (r * r + g * g + b * b) <= threshold * threshold;
         }
 
+        public void RefreshPunten()
+        {
+            foreach(Sporter sp in alleBezoekers)
+            {
+                sp.behaaldePunten = 
+            }
+        }
+
         public string GetResultaten()
         {
+            //Vergeet niet positiopdekabel toe te voegen aan Graphics
             //1 Gooi int in string
             int aantalBezoekers = (from x in alleBezoekers select x).Count();
             //2 neem Tostring van sporter ofzo met punten, later nog ervoor zorgen dat af en toe behaaldepunten in de lijst wordt geupdate
