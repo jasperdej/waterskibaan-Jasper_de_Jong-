@@ -47,13 +47,8 @@ namespace Wpf_Waterskibaan_project
                 int aantalBezoekers = (from x in alleBezoekers select x).Count();
                 output += $"Bezoekers: {aantalBezoekers} \n";
                 //2
-                var meestePunten = alleBezoekers.OrderBy(i => i.behaaldePunten).Take(1).ToList();
-                Sporter besteSporter = null;
-                foreach(Sporter sp in meestePunten)
-                {
-                    besteSporter = sp;
-                }
-                output += $"Highscore: {besteSporter.behaaldePunten} \n";
+                var meestePunten = alleBezoekers.Max(i => i.behaaldePunten);
+                output += $"Highscore: {meestePunten} \n";
                 //3
                 var aantalRood = alleBezoekers.Where(i => ColorsClose(i.KledingKleur, Color.FromRgb(255, 0, 0)));
                 List<Sporter> aantalRodeSporters = new List<Sporter>();
@@ -94,7 +89,7 @@ namespace Wpf_Waterskibaan_project
                 {
                     var alleMoves = from item in alleBezoekers where lijnen.Dequeue().SporterAanLijn != null select item.Moves;
                     List<IMoves> uniekeMoves = new List<IMoves>();
-                    foreach (IMoves im in alleMoves)// fix bug
+                    foreach (IMoves im in alleMoves.ToList())// fix bug
                     {
                         uniekeMoves.Add(im);
                     }

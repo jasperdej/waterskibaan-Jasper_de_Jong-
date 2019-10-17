@@ -178,10 +178,19 @@ namespace Wpf_Waterskibaan_project
                         int randomResult = rnd.Next(1, 4);
                         if (randomResult == 2 && i != 0)
                         {
+                            Sporter obj = null;
+                            if (game.logger.alleBezoekers.Contains(sporter))
+                            {
+                                obj = game.logger.alleBezoekers.FirstOrDefault(x => x == sporter);
+                            }
                             output = "";
                             int punten = sporter.Move();
                             if (punten > 5)
                             {
+                                if (obj != null)
+                                {
+                                    game.logger.alleBezoekers.FirstOrDefault(x => x == sporter).behaaldePunten += punten;
+                                }
                                 sporter.behaaldePunten += punten;
                                 //Draai = 20
                                 //EenBeen = 70
